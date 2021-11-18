@@ -36,6 +36,7 @@ public class EcoSystem extends Organization{
         return restaurantDirectory;
     }
 
+
     public void setRestaurantDirectory(RestaurantDirectory restaurantDirectory) {
         this.restaurantDirectory = restaurantDirectory;
     }
@@ -72,9 +73,11 @@ public class EcoSystem extends Organization{
         roleList.add(new SystemAdminRole());
         return roleList;
     }
-    private EcoSystem(){
+    private EcoSystem() {
         super(null);
-       // networkList=new ArrayList<Network>();
+        customerDirectory  = new CustomerDirectory();
+        deliveryManDirectory = new DeliveryManDirectory();
+        restaurantDirectory = new RestaurantDirectory();
     }
 
     

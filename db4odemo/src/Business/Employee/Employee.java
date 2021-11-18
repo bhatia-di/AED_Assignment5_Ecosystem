@@ -15,6 +15,11 @@ public class Employee {
     private String name;
     private String id;
     private static int count = 1;
+    
+    public Employee() {
+        this.id = UUID.randomUUID().toString();
+
+    }
 
     public Employee(String name) {
         this.id = UUID.randomUUID().toString();

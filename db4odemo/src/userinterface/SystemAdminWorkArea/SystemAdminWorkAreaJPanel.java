@@ -30,11 +30,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     DefaultTableModel customerDirectoryTableModel;
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+        initPersonDirModel();
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         populateTree();
-        initPersonDirModel();
+
     }
     
      private void initPersonDirModel() {
