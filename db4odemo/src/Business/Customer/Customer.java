@@ -6,6 +6,7 @@
 package Business.Customer;
 
 import Business.Employee.Employee;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.util.UUID;
 
@@ -25,7 +26,6 @@ public class Customer {
 
     public Customer() {
         this.customerId = UUID.randomUUID().toString();
-        this.userAccount = new UserAccount();  
     }
 
     public Customer( Customer cust, String username, String password) {
@@ -79,6 +79,18 @@ public class Customer {
     public void setUserAccount(String userName, String password, String name ) {
         this.userAccount.setUsername(userName);
         this.userAccount.setPassword(password);
+        //this.userAccount.setEmployee(new Employee(name));
+    }
+
+    public void setUserAccount(String userName, String password, String name, Role role) {
+        this.userAccount.setUsername(userName);
+        this.userAccount.setPassword(password);
+        this.userAccount.setRole(role);
+        //this.userAccount.setEmployee(new Employee(name));
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+       this.userAccount = userAccount;
         //this.userAccount.setEmployee(new Employee(name));
     }
 

@@ -8,7 +8,12 @@ package userinterface.SystemAdminWorkArea;
 import Business.Customer.Customer;
 import Business.EcoSystem;
 
+import Business.Employee.Employee;
 import Business.Organization;
+import Business.Role.CustomerRole;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -520,6 +525,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             int resp = saveCustChangesFromUItoCustObject(newCust);
             if (resp == 1) {
 
+               Employee newEmployee = ecosystem.getEmployeeDirectory().createEmployee(newCust.getName());
+               UserAccount newUserAccount = ecosystem.getUserAccountDirectory().createUserAccount(userNameTextField.getText().trim(),
+                       String.valueOf(paswdPaswdField.getPassword()), newEmployee, new CustomerRole());
+               newCust.setUserAccount(newUserAccount);
                ecosystem.getCustomerDirectory().createCustomer(newCust);
                 populateCustomerDirectoryTable();
                 JOptionPane.showConfirmDialog(null,
@@ -539,6 +548,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             Customer personRecord = ecosystem.getCustomerDirectory().getPersonAtIndex(selectedIndex);
             int resp = saveCustChangesFromUItoCustObject(personRecord);
             if (resp == 1) {
+                ecosystem.getEmployeeDirectory().setEmployeeName(personRecord.getName(), personRecord.getUserAccount().getEmployee().getId());
+                ecosystem.getUserAccountDirectory().updateUserAccountValues(personRecord.getUserAccount().getUserAccountId(), userNameTextField.getText().trim(), String.valueOf(paswdPaswdField.getPassword()));
+
+
                 ecosystem.getCustomerDirectory().setPersonAtIndex(selectedIndex, personRecord);
                 populateCustomerDirectoryTable();
 
@@ -594,8 +607,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         cust.setAge(age);
         cust.setName(name);
         cust.setAddress(address);
-        cust.setUserAccount(userName, password, name);       
-        
+
         return 1;
 
     

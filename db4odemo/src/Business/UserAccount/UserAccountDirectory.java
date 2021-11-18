@@ -7,12 +7,14 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author raunak
  */
 public class UserAccountDirectory {
+
     
     private ArrayList<UserAccount> userAccountList;
 
@@ -40,6 +42,15 @@ public class UserAccountDirectory {
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;
+    }
+
+    public void updateUserAccountValues(String id, String username, String paswd) {
+        UserAccount updateEmp = userAccountList.stream().filter(acc -> acc.getUserAccountId().equals(id))
+                .collect(Collectors.toList())
+                .get(0);
+        updateEmp.setUsername(username);
+        updateEmp.setPassword(paswd);
+
     }
     
     public boolean checkIfUsernameIsUnique(String username){

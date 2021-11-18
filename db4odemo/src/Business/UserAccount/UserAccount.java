@@ -8,12 +8,14 @@ import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
 
+import java.util.UUID;
+
 /**
  *
  * @author raunak
  */
 public class UserAccount {
-    
+    private String userAccountId;
     private String username;
     private String password;
     private Employee employee;
@@ -21,6 +23,7 @@ public class UserAccount {
     private WorkQueue workQueue;
 
     public UserAccount() {
+        userAccountId = UUID.randomUUID().toString();
         workQueue = new WorkQueue();
     }
 
@@ -72,6 +75,7 @@ public class UserAccount {
         return workQueue;
     }
 
+    public String getUserAccountId() {return userAccountId;}
     
     
     @Override

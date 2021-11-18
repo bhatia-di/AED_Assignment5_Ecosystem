@@ -5,6 +5,7 @@
 package Business.Employee;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -27,5 +28,13 @@ public class EmployeeDirectory {
         employee.setName(name);
         employeeList.add(employee);
         return employee;
+    }
+
+    public void setEmployeeName(String employeeName, String ID) {
+        Employee updateEmp = employeeList.stream().filter(employee -> employee.getId().equals(ID))
+                .collect(Collectors.toList())
+                .get(0);
+        updateEmp.setName(employeeName);
+
     }
 }
