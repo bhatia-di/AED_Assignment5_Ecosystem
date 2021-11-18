@@ -260,8 +260,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         paswdLabel.setForeground(new java.awt.Color(0, 0, 102));
         paswdLabel.setText("Password");
 
-        paswdPaswdField.setText("jPasswordField1");
-
         javax.swing.GroupLayout personJPanelLayout = new javax.swing.GroupLayout(personJPanel);
         personJPanel.setLayout(personJPanelLayout);
         personJPanelLayout.setHorizontalGroup(
@@ -281,21 +279,21 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personJPanelLayout.createSequentialGroup()
                         .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(personNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(personJPanelLayout.createSequentialGroup()
-                                .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(personJPanelLayout.createSequentialGroup()
-                                .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(personNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(saveChangesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(personJPanelLayout.createSequentialGroup()
                         .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(personJPanelLayout.createSequentialGroup()
+                                .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(personNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
+                                .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(personNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(personJPanelLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,12 +309,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                         .addGap(36, 36, 36)
                                         .addComponent(ageLabelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(paswdPaswdField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                    .addGroup(personJPanelLayout.createSequentialGroup()
-                        .addGroup(personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(saveChangesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         personJPanelLayout.setVerticalGroup(
             personJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,6 +395,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
         updateAdminHeader("Create Person record");
+        setAllTextFieldsForCustomerEnabled();
     }//GEN-LAST:event_createButtonActionPerformed
     private void setValuesInForm(int selectedRowIndex) {
         Customer customerRecord = ecosystem.getCustomerDirectory().getPersonAtIndex(selectedRowIndex);
@@ -414,6 +408,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
         updateAdminHeader("Update Person record");
+        setAllTextFieldsForCustomerEnabled();
 
         int selectedRowIndex = personDirTable.getSelectedRow();
 
@@ -442,6 +437,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         setValuesInForm(selectedRowIndex);
+        setAllTextFieldsForCustomerDisabled();
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -470,17 +466,44 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     
     private void populateCustomerDirectoryTable() {
     
-        
+        customerDirectoryTableModel.setRowCount(0);
         for(Customer c: ecosystem.getCustomerDirectory().getCustomers()) {
             
-            String[] rowData = {c.getName(), Integer.toString(c.getAge()), c.getAddress(), c.getUserAccount().getUsername()};
+            String[] rowData = {c.getName(), Integer.toString(c.getAge()), c.getAddress(), c.getUserAccount().getUsername(), c.getUserAccount().getPassword()};
             customerDirectoryTableModel.addRow(rowData);
         }
     
     }
-    
-    
-    
+
+
+    private void setAllTextFieldsForCustomerNull () {
+        personNameTextField.setText("");
+        addressTextField.setText("");
+        userNameTextField.setText("");
+        ageSlider.setValue(20);
+    }
+
+
+    private void setAllTextFieldsForCustomerEnabled () {
+        personNameTextField.setEnabled(true);
+        addressTextField.setEnabled(true);
+        userNameTextField.setEnabled(true);
+        paswdPaswdField.setEnabled(true);
+        ageSlider.setEnabled(true);
+    }
+
+
+    private void setAllTextFieldsForCustomerDisabled () {
+        personNameTextField.setEnabled(false);
+        addressTextField.setEnabled(false);
+        userNameTextField.setEnabled(false);
+        paswdPaswdField.setEnabled(false);
+        ageSlider.setEnabled(false);
+    }
+
+
+
+
     private void ageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ageSliderStateChanged
         // TODO add your handling code here:
 
@@ -527,6 +550,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
 
             }
+
+            setAllTextFieldsForCustomerNull();
 
         }
 
