@@ -878,9 +878,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
             }
 
-            setAllTextFieldsForRestNull();
+
 
         }
+        setAllTextFieldsForRestNull();
     }//GEN-LAST:event_saveChangesRestDirButtonActionPerformed
     private void updateAdminHeader(String text) {
         personDirAdminHeaderLabel.setText(text);
@@ -936,7 +937,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     r.getManagerName(),
                     r.getUserAccount().getUsername(),
                     r.getUserAccount().getPassword()};
-            customerDirectoryTableModel.addRow(rowData);
+            restDirectoryTableModel.addRow(rowData);
         }
 
     }
