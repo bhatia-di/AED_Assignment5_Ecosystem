@@ -11,12 +11,14 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Organization;
 import Business.Restaurant.Restaurant;
+import Business.Role.AdminRole;
 import Business.Role.CustomerRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -92,31 +94,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jTree = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
         adminScreenTabbedPane = new javax.swing.JTabbedPane();
-        restAdminJpanel = new javax.swing.JPanel();
-        restDirLabel = new javax.swing.JLabel();
-        restDirectoryScollPanel = new javax.swing.JScrollPane();
-        restDirTable = new javax.swing.JTable();
-        createButtonRest = new javax.swing.JButton();
-        updateRestButton = new javax.swing.JButton();
-        viewRestButton = new javax.swing.JButton();
-        deleteRestButton = new javax.swing.JButton();
-        restDirAdminHeaderLabel = new javax.swing.JLabel();
-        restNameLabel = new javax.swing.JLabel();
-        restNameTextField = new javax.swing.JTextField();
-        restLocLabel = new javax.swing.JLabel();
-        restLocTextField = new javax.swing.JTextField();
-        restPhnLabel = new javax.swing.JLabel();
-        restPhnTextField = new javax.swing.JTextField();
-        restNameLabel3 = new javax.swing.JLabel();
-        restManagerNameTextField = new javax.swing.JTextField();
-        restNameLabel4 = new javax.swing.JLabel();
-        restManagerUserNameTextField = new javax.swing.JTextField();
-        restNameLabel5 = new javax.swing.JLabel();
-        restManagerPaswdTextField = new javax.swing.JTextField();
-        saveChangesButton1 = new javax.swing.JButton();
-        allergyLabel = new javax.swing.JLabel();
-        allergyJListPane = new javax.swing.JScrollPane();
-        cusineList = new javax.swing.JList<>();
         deliveryAGentDirJPanel = new javax.swing.JPanel();
         personJPanel = new javax.swing.JPanel();
         personDirectoryScollPanel = new javax.swing.JScrollPane();
@@ -139,6 +116,31 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         userNameTextField = new javax.swing.JTextField();
         paswdLabel = new javax.swing.JLabel();
         paswdPaswdField = new javax.swing.JPasswordField();
+        restAdminJpanel = new javax.swing.JPanel();
+        restDirLabel = new javax.swing.JLabel();
+        restDirectoryScollPanel = new javax.swing.JScrollPane();
+        restDirTable = new javax.swing.JTable();
+        createButtonRest = new javax.swing.JButton();
+        updateRestButton = new javax.swing.JButton();
+        viewRestButton = new javax.swing.JButton();
+        deleteRestButton = new javax.swing.JButton();
+        restDirAdminHeaderLabel = new javax.swing.JLabel();
+        restNameLabel = new javax.swing.JLabel();
+        restNameTextField = new javax.swing.JTextField();
+        restLocLabel = new javax.swing.JLabel();
+        restLocTextField = new javax.swing.JTextField();
+        restPhnLabel = new javax.swing.JLabel();
+        restPhnTextField = new javax.swing.JTextField();
+        restNameLabel3 = new javax.swing.JLabel();
+        restManagerNameTextField = new javax.swing.JTextField();
+        restNameLabel4 = new javax.swing.JLabel();
+        restManagerUserNameTextField = new javax.swing.JTextField();
+        restNameLabel5 = new javax.swing.JLabel();
+        saveChangesRestDirButton = new javax.swing.JButton();
+        allergyLabel = new javax.swing.JLabel();
+        allergyJListPane = new javax.swing.JScrollPane();
+        cusineList = new javax.swing.JList<>();
+        restManagerPaswdField = new javax.swing.JPasswordField();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -166,232 +168,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         adminScreenTabbedPane.setForeground(new java.awt.Color(0, 0, 102));
         adminScreenTabbedPane.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-
-        restAdminJpanel.setForeground(new java.awt.Color(0, 0, 102));
-        restAdminJpanel.setAutoscrolls(true);
-
-        restDirLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        restDirLabel.setForeground(new java.awt.Color(0, 0, 102));
-        restDirLabel.setText("Restaurant Directory");
-
-        restDirTable.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
-        restDirTable.setForeground(new java.awt.Color(0, 0, 102));
-        restDirTable.setModel(restDirectoryTableModel);
-        restDirTable.setRowHeight(40);
-        restDirectoryScollPanel.setViewportView(restDirTable);
-
-        createButtonRest.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
-        createButtonRest.setForeground(new java.awt.Color(0, 0, 102));
-        createButtonRest.setText("Create");
-        createButtonRest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonRestActionPerformed(evt);
-            }
-        });
-
-        updateRestButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
-        updateRestButton.setForeground(new java.awt.Color(0, 0, 102));
-        updateRestButton.setText("Update");
-        updateRestButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateRestButtonActionPerformed(evt);
-            }
-        });
-
-        viewRestButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
-        viewRestButton.setForeground(new java.awt.Color(0, 0, 102));
-        viewRestButton.setText("View ");
-        viewRestButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewRestButtonActionPerformed(evt);
-            }
-        });
-
-        deleteRestButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
-        deleteRestButton.setForeground(new java.awt.Color(0, 0, 102));
-        deleteRestButton.setText("Delete");
-        deleteRestButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteRestButtonActionPerformed(evt);
-            }
-        });
-
-        restDirAdminHeaderLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        restDirAdminHeaderLabel.setForeground(new java.awt.Color(0, 0, 102));
-        restDirAdminHeaderLabel.setText(" ");
-
-        restNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        restNameLabel.setForeground(new java.awt.Color(0, 0, 102));
-        restNameLabel.setText("Restaurant Name :");
-
-        restNameTextField.setForeground(new java.awt.Color(0, 0, 102));
-        restNameTextField.setText(" ");
-
-        restLocLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        restLocLabel.setForeground(new java.awt.Color(0, 0, 102));
-        restLocLabel.setText("Restaurant Name :");
-
-        restLocTextField.setForeground(new java.awt.Color(0, 0, 102));
-        restLocTextField.setText(" ");
-
-        restPhnLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        restPhnLabel.setForeground(new java.awt.Color(0, 0, 102));
-        restPhnLabel.setText("Phone Number :");
-
-        restPhnTextField.setForeground(new java.awt.Color(0, 0, 102));
-        restPhnTextField.setText(" ");
-
-        restNameLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        restNameLabel3.setForeground(new java.awt.Color(0, 0, 102));
-        restNameLabel3.setText("Manager Name:");
-
-        restManagerNameTextField.setForeground(new java.awt.Color(0, 0, 102));
-        restManagerNameTextField.setText(" ");
-
-        restNameLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        restNameLabel4.setForeground(new java.awt.Color(0, 0, 102));
-        restNameLabel4.setText("Manager User Name:");
-
-        restManagerUserNameTextField.setForeground(new java.awt.Color(0, 0, 102));
-        restManagerUserNameTextField.setText(" ");
-
-        restNameLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        restNameLabel5.setForeground(new java.awt.Color(0, 0, 102));
-        restNameLabel5.setText("Manager Password:");
-
-        restManagerPaswdTextField.setForeground(new java.awt.Color(0, 0, 102));
-        restManagerPaswdTextField.setText(" ");
-
-        saveChangesButton1.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
-        saveChangesButton1.setForeground(new java.awt.Color(0, 0, 102));
-        saveChangesButton1.setText("Save");
-        saveChangesButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveChangesButton1ActionPerformed(evt);
-            }
-        });
-
-        allergyLabel.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
-        allergyLabel.setForeground(new java.awt.Color(0, 0, 102));
-        allergyLabel.setText("Cusinies:");
-
-        cusineList.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
-        cusineList.setForeground(new java.awt.Color(0, 0, 102));
-        cusineList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Chinese", "Indian", "American", "Italian", "Fusion", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        allergyJListPane.setViewportView(cusineList);
-
-        javax.swing.GroupLayout restAdminJpanelLayout = new javax.swing.GroupLayout(restAdminJpanel);
-        restAdminJpanel.setLayout(restAdminJpanelLayout);
-        restAdminJpanelLayout.setHorizontalGroup(
-            restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, restAdminJpanelLayout.createSequentialGroup()
-                        .addComponent(restDirAdminHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createButtonRest)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateRestButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(viewRestButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deleteRestButton)
-                        .addGap(193, 193, 193))
-                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(restDirectoryScollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(restDirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                    .addComponent(restNameLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(64, 64, 64)
-                                    .addComponent(restManagerUserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                    .addComponent(restNameLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(54, 54, 54)
-                                    .addComponent(restManagerPaswdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(saveChangesButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                    .addComponent(restNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(80, 80, 80)
-                                    .addComponent(restNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                                    .addComponent(allergyLabel)))
-                            .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                        .addComponent(restLocLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(80, 80, 80)
-                                        .addComponent(restLocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                        .addComponent(restPhnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(80, 80, 80)
-                                        .addComponent(restPhnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                        .addComponent(restNameLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(80, 80, 80)
-                                        .addComponent(restManagerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(41, 41, 41)
-                                .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(47, Short.MAX_VALUE))))
-        );
-        restAdminJpanelLayout.setVerticalGroup(
-            restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(restDirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(restDirectoryScollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteRestButton)
-                    .addComponent(updateRestButton)
-                    .addComponent(viewRestButton)
-                    .addComponent(createButtonRest)
-                    .addComponent(restDirAdminHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(restNameLabel)
-                        .addComponent(restNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(allergyLabel)))
-                .addGap(18, 18, 18)
-                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(restLocLabel)
-                            .addComponent(restLocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(restPhnLabel)
-                            .addComponent(restPhnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(restNameLabel3)
-                            .addComponent(restManagerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26))
-                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                        .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
-                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(restNameLabel4)
-                    .addComponent(restManagerUserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(restNameLabel5)
-                    .addComponent(restManagerPaswdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(saveChangesButton1)
-                .addGap(96, 96, 96))
-        );
-
-        adminScreenTabbedPane.addTab("Restaurant Admin", restAdminJpanel);
 
         javax.swing.GroupLayout deliveryAGentDirJPanelLayout = new javax.swing.GroupLayout(deliveryAGentDirJPanel);
         deliveryAGentDirJPanel.setLayout(deliveryAGentDirJPanelLayout);
@@ -618,6 +394,228 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         adminScreenTabbedPane.addTab("Customer Directory", personJPanel);
 
+        restAdminJpanel.setForeground(new java.awt.Color(0, 0, 102));
+        restAdminJpanel.setAutoscrolls(true);
+
+        restDirLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        restDirLabel.setForeground(new java.awt.Color(0, 0, 102));
+        restDirLabel.setText("Restaurant Directory");
+
+        restDirTable.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        restDirTable.setForeground(new java.awt.Color(0, 0, 102));
+        restDirTable.setModel(restDirectoryTableModel);
+        restDirTable.setRowHeight(40);
+        restDirectoryScollPanel.setViewportView(restDirTable);
+
+        createButtonRest.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        createButtonRest.setForeground(new java.awt.Color(0, 0, 102));
+        createButtonRest.setText("Create");
+        createButtonRest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonRestActionPerformed(evt);
+            }
+        });
+
+        updateRestButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        updateRestButton.setForeground(new java.awt.Color(0, 0, 102));
+        updateRestButton.setText("Update");
+        updateRestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateRestButtonActionPerformed(evt);
+            }
+        });
+
+        viewRestButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        viewRestButton.setForeground(new java.awt.Color(0, 0, 102));
+        viewRestButton.setText("View ");
+        viewRestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewRestButtonActionPerformed(evt);
+            }
+        });
+
+        deleteRestButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        deleteRestButton.setForeground(new java.awt.Color(0, 0, 102));
+        deleteRestButton.setText("Delete");
+        deleteRestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteRestButtonActionPerformed(evt);
+            }
+        });
+
+        restDirAdminHeaderLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        restDirAdminHeaderLabel.setForeground(new java.awt.Color(0, 0, 102));
+        restDirAdminHeaderLabel.setText(" ");
+
+        restNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restNameLabel.setForeground(new java.awt.Color(0, 0, 102));
+        restNameLabel.setText("Restaurant Name :");
+
+        restNameTextField.setForeground(new java.awt.Color(0, 0, 102));
+        restNameTextField.setText(" ");
+
+        restLocLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restLocLabel.setForeground(new java.awt.Color(0, 0, 102));
+        restLocLabel.setText("Restaurant Name :");
+
+        restLocTextField.setForeground(new java.awt.Color(0, 0, 102));
+        restLocTextField.setText(" ");
+
+        restPhnLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restPhnLabel.setForeground(new java.awt.Color(0, 0, 102));
+        restPhnLabel.setText("Phone Number :");
+
+        restPhnTextField.setForeground(new java.awt.Color(0, 0, 102));
+        restPhnTextField.setText(" ");
+
+        restNameLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restNameLabel3.setForeground(new java.awt.Color(0, 0, 102));
+        restNameLabel3.setText("Manager Name:");
+
+        restManagerNameTextField.setForeground(new java.awt.Color(0, 0, 102));
+        restManagerNameTextField.setText(" ");
+
+        restNameLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restNameLabel4.setForeground(new java.awt.Color(0, 0, 102));
+        restNameLabel4.setText("Manager User Name:");
+
+        restManagerUserNameTextField.setForeground(new java.awt.Color(0, 0, 102));
+        restManagerUserNameTextField.setText(" ");
+
+        restNameLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restNameLabel5.setForeground(new java.awt.Color(0, 0, 102));
+        restNameLabel5.setText("Manager Password:");
+
+        saveChangesRestDirButton.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        saveChangesRestDirButton.setForeground(new java.awt.Color(0, 0, 102));
+        saveChangesRestDirButton.setText("Save");
+        saveChangesRestDirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangesRestDirButtonActionPerformed(evt);
+            }
+        });
+
+        allergyLabel.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        allergyLabel.setForeground(new java.awt.Color(0, 0, 102));
+        allergyLabel.setText("Cusinies:");
+
+        cusineList.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        cusineList.setForeground(new java.awt.Color(0, 0, 102));
+        cusineList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Chinese", "Indian", "American", "Italian", "Fusion", " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        allergyJListPane.setViewportView(cusineList);
+
+        javax.swing.GroupLayout restAdminJpanelLayout = new javax.swing.GroupLayout(restAdminJpanel);
+        restAdminJpanel.setLayout(restAdminJpanelLayout);
+        restAdminJpanelLayout.setHorizontalGroup(
+            restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, restAdminJpanelLayout.createSequentialGroup()
+                        .addComponent(restDirAdminHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createButtonRest)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateRestButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewRestButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteRestButton)
+                        .addGap(193, 193, 193))
+                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(restDirectoryScollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(restDirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveChangesRestDirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                                .addComponent(restNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(80, 80, 80)
+                                .addComponent(restNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(allergyLabel))
+                            .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(restNameLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(restNameLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(54, 54, 54)
+                                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(restManagerUserNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                    .addComponent(restManagerPaswdField)))
+                            .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                                        .addComponent(restLocLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80)
+                                        .addComponent(restLocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                                        .addComponent(restPhnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80)
+                                        .addComponent(restPhnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                                        .addComponent(restNameLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80)
+                                        .addComponent(restManagerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)
+                                .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(47, Short.MAX_VALUE))))
+        );
+        restAdminJpanelLayout.setVerticalGroup(
+            restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(restDirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(restDirectoryScollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteRestButton)
+                    .addComponent(updateRestButton)
+                    .addComponent(viewRestButton)
+                    .addComponent(createButtonRest)
+                    .addComponent(restDirAdminHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(restNameLabel)
+                        .addComponent(restNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(allergyLabel)))
+                .addGap(18, 18, 18)
+                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(restLocLabel)
+                            .addComponent(restLocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(restPhnLabel)
+                            .addComponent(restPhnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(restNameLabel3)
+                            .addComponent(restManagerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))
+                    .addGroup(restAdminJpanelLayout.createSequentialGroup()
+                        .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)))
+                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(restNameLabel4)
+                    .addComponent(restManagerUserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(restNameLabel5)
+                    .addComponent(restManagerPaswdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(saveChangesRestDirButton)
+                .addGap(96, 96, 96))
+        );
+
+        adminScreenTabbedPane.addTab("Restaurant Admin", restAdminJpanel);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -788,19 +786,102 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void viewRestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRestButtonActionPerformed
         // TODO add your handling code here:
-          updateResDirHeader("View Restaurant record");
+
+
+
+        updateResDirHeader("Viewing Restaurant below");
+
+        int selectedRowIndex = restDirTable.getSelectedRow();
+
+        if(selectedRowIndex == -1) {
+            JOptionPane.showConfirmDialog(null, "No record selected to view the row", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        setValuesInRestDirForm(selectedRowIndex);
         setAllTextFieldsForRestDisabled();
     }//GEN-LAST:event_viewRestButtonActionPerformed
 
     private void deleteRestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRestButtonActionPerformed
-        // TODO add your handling code here:
-          updateResDirHeader("Delete Restaurant record");
-            setAllTextFieldsForRestEnabled();
+        //
+
+        updateResDirHeader("Delete Restaurant record");
+
+        int selectedRowIndex = restDirTable.getSelectedRow();
+
+        if(selectedRowIndex == -1) {
+            JOptionPane.showConfirmDialog(null,
+                    "No record selected to delete the row",
+                    "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete selected record?");
+        if(response == 0) {
+            ecosystem.getRestaurantDirectory().removeRestaurantAtIndex(selectedRowIndex);
+        }
+        populateRestaurantDirectoryTable();
     }//GEN-LAST:event_deleteRestButtonActionPerformed
 
-    private void saveChangesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButton1ActionPerformed
+    private void saveChangesRestDirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesRestDirButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_saveChangesButton1ActionPerformed
+        
+        
+        if (restDirAdminHeaderLabel.getText().contains("Create")) {
+
+            //ArrayList<Person> personDir = personDirectory.getPeople();
+            Restaurant newRest = new Restaurant();
+            int resp = saveRestChangesFromUItoRestObject(newRest);
+            if (resp == 1) {
+
+
+
+                Employee newEmployee = ecosystem.getEmployeeDirectory().createEmployee(newRest.getManagerName());
+                UserAccount newUserAccount = ecosystem.getUserAccountDirectory().createUserAccount(restManagerUserNameTextField.getText().trim(),
+                    String.valueOf(restManagerPaswdField.getPassword()), newEmployee, new AdminRole());
+                newRest.setUserAccount(newUserAccount);
+                ecosystem.getRestaurantDirectory().createRestaurant(newRest);
+                populateRestaurantDirectoryTable();
+                JOptionPane.showConfirmDialog(null,
+                    "Created restaurant record successfully!",
+                    "Success!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+
+
+            }
+
+        }
+
+        if (restDirAdminHeaderLabel.getText().contains("Update")) {
+            int selectedIndex = restDirTable.getSelectedRow();
+            Restaurant restaurantRecord = ecosystem.getRestaurantDirectory().getRestAtIndex(selectedIndex);
+            int resp = saveRestChangesFromUItoRestObject(restaurantRecord);
+            if (resp == 1) {
+                ecosystem.getEmployeeDirectory().setEmployeeName(restaurantRecord.getRestName(), restaurantRecord.getUserAccount().getEmployee().getId());
+                ecosystem.getUserAccountDirectory().updateUserAccountValues(restaurantRecord.getUserAccount().getUserAccountId(),
+                        restManagerUserNameTextField.getText().trim(),
+                        String.valueOf(restManagerPaswdField.getPassword()));
+
+                ecosystem.getRestaurantDirectory().setRestaurantAtIndex(selectedIndex, restaurantRecord);
+                populateRestaurantDirectoryTable();
+
+                JOptionPane.showConfirmDialog(null,
+                    "Restaurant Record updated successfully!",
+                    "Success!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+
+            }
+
+            setAllTextFieldsForRestNull();
+
+        }
+    }//GEN-LAST:event_saveChangesRestDirButtonActionPerformed
     private void updateAdminHeader(String text) {
         personDirAdminHeaderLabel.setText(text);
     }    
@@ -826,7 +907,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         restLocTextField.setEnabled(false);
         restPhnTextField.setEnabled(false);
         restManagerNameTextField.setEnabled(false);
-        restManagerPaswdTextField.setEnabled(false);
+        restManagerPaswdField.setEnabled(false);
         restManagerUserNameTextField.setEnabled(false);
         cusineList.setEnabled(false);
 
@@ -874,7 +955,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         restLocTextField.setText("");
         restPhnTextField.setText("");
         restManagerNameTextField.setText("");
-        restManagerPaswdTextField.setText("");
+        restManagerPaswdField.setText("");
         restManagerUserNameTextField.setText("");
     }
 
@@ -893,7 +974,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         restLocTextField.setEnabled(true);
         restPhnTextField.setEnabled(true);
         restManagerNameTextField.setEnabled(true);
-        restManagerPaswdTextField.setEnabled(true);
+        restManagerPaswdField.setEnabled(true);
         restManagerUserNameTextField.setEnabled(true);
         cusineList.setEnabled(true);
 
@@ -903,7 +984,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         restLocTextField.setEnabled(false);
         restPhnTextField.setEnabled(false);
         restManagerNameTextField.setEnabled(false);
-        restManagerPaswdTextField.setEnabled(false);
+         restManagerPaswdField.setEnabled(false);
         restManagerUserNameTextField.setEnabled(false);
         cusineList.setEnabled(false);
 
@@ -963,6 +1044,68 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     
     
     }
+
+
+    private int saveRestChangesFromUItoRestObject(Restaurant restaurant) {
+
+
+        String restName = restNameTextField.getText().trim();
+        String restLoc = restLocTextField.getText().trim();
+        String restPhone = restPhnTextField.getText().trim();
+        String restManager = restManagerNameTextField.getText().trim();
+        String restUserName = restManagerUserNameTextField.getText().trim();
+        String restPaswd = String.valueOf(restManagerPaswdField.getPassword());
+        List<String> cusines = cusineList.getSelectedValuesList();
+
+
+
+        if (restName.isEmpty()) {
+
+            JOptionPane.showConfirmDialog(null, "Please verify values for Restaurant name. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+        }
+
+        if (restLoc.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Please verify values for Restaurant Location. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+
+        }
+        if (restUserName.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Please verify values for Manager Username. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+
+        }
+
+        if (restPaswd.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Please verify values for Manager Paswd. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+
+        }
+        restaurant.setRestName(restName);
+        restaurant.setRestLocation(restLoc);
+        restaurant.setPhoneNumber(Long.valueOf(restPhone));
+        restaurant.setManagerName(restManager);
+        restaurant.setCuisine(cusines);
+
+
+
+        return 1;
+
+
+
+    }
     
     
 
@@ -1003,7 +1146,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel restLocLabel;
     private javax.swing.JTextField restLocTextField;
     private javax.swing.JTextField restManagerNameTextField;
-    private javax.swing.JTextField restManagerPaswdTextField;
+    private javax.swing.JPasswordField restManagerPaswdField;
     private javax.swing.JTextField restManagerUserNameTextField;
     private javax.swing.JLabel restNameLabel;
     private javax.swing.JLabel restNameLabel3;
@@ -1013,7 +1156,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel restPhnLabel;
     private javax.swing.JTextField restPhnTextField;
     private javax.swing.JButton saveChangesButton;
-    private javax.swing.JButton saveChangesButton1;
+    private javax.swing.JButton saveChangesRestDirButton;
     private javax.swing.JButton updateButton;
     private javax.swing.JButton updateRestButton;
     private javax.swing.JLabel userNameLabel;

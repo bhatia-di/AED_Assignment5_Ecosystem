@@ -36,7 +36,7 @@ public class RestaurantDirectory {
 
     }
 
-    public Restaurant createRest(Restaurant newRest) {
+    public Restaurant createRestaurant(Restaurant newRest) {
 
         restaurants.add(newRest);
         return newRest;
@@ -46,7 +46,7 @@ public class RestaurantDirectory {
         this.lastUpdatedTimestamp = lastUpdatedTimestamp;
     }
 
-    public void setPersonAtIndex(int index, Restaurant newRest) {
+    public void setRestaurantAtIndex(int index, Restaurant newRest) {
 
         restaurants.set(index, newRest);
         setLastUpdatedTimestamp(LocalDateTime.now());
@@ -54,7 +54,7 @@ public class RestaurantDirectory {
 
     }
 
-    public void removePersonAtIndex(int index) {
+    public void removeRestaurantAtIndex(int index) {
         restaurants.remove(getRestAtIndex(index));
         setLastUpdatedTimestamp(LocalDateTime.now());
     }

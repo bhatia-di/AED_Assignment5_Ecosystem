@@ -8,6 +8,7 @@ package Business.Restaurant;
 import Business.UserAccount.UserAccount;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,7 +21,7 @@ public class Restaurant {
     private String restLocation;
     private Long phoneNumber;
     private ArrayList<String> menulist;
-    private ArrayList<String> cuisine;
+    private List<String> cuisine;
     private String managerName;
     private UserAccount userAccount;
 
@@ -28,7 +29,7 @@ public class Restaurant {
     public Restaurant() {
         restId = UUID.randomUUID().toString();
         menulist = new ArrayList<String>();
-        cuisine = new ArrayList<String>();
+        cuisine = new ArrayList<>();
     }
 
 
@@ -71,11 +72,11 @@ public class Restaurant {
         this.menulist = menulist;
     }
 
-    public ArrayList<String> getCuisine() {
+    public List<String> getCuisine() {
         return cuisine;
     }
 
-    public void setCuisine(ArrayList<String> cuisine) {
+    public void setCuisine(List<String> cuisine) {
         this.cuisine = cuisine;
     }
 
