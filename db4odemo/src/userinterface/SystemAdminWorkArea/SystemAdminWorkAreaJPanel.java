@@ -6,6 +6,7 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 
 import Business.Employee.Employee;
@@ -38,28 +39,40 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     DefaultTableModel customerDirectoryTableModel;
     DefaultTableModel restDirectoryTableModel;
+    DefaultTableModel deliveryAgentDirectoryTableModel;
 
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initPersonDirModel();
         initRestDirModel();
+        initDelAgentModel();
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         populateTree();
         populateCustomerDirectoryTable();
         populateRestaurantDirectoryTable();
+        populateDeliveryAgentDirectoryTable();
 
     }
     
-     private void initPersonDirModel() {
+     private void initDelAgentModel() {
         restDirectoryTableModel = new DefaultTableModel();
-         restDirectoryTableModel.addColumn("Restaurant Name");
-         restDirectoryTableModel.addColumn("Restaurant Location");
-         restDirectoryTableModel.addColumn("Restaurant Phone Number");
-         restDirectoryTableModel.addColumn("Restaurant Cuisines");
-         restDirectoryTableModel.addColumn("Manager Name");
+         restDirectoryTableModel.addColumn("Name");
+         restDirectoryTableModel.addColumn("Phone Number");
          restDirectoryTableModel.addColumn("Username");
          restDirectoryTableModel.addColumn("Password");
+
+    }
+
+    private void initPersonDirModel() {
+        restDirectoryTableModel = new DefaultTableModel();
+        restDirectoryTableModel.addColumn("Restaurant Name");
+        restDirectoryTableModel.addColumn("Restaurant Location");
+        restDirectoryTableModel.addColumn("Restaurant Phone Number");
+        restDirectoryTableModel.addColumn("Restaurant Cuisines");
+        restDirectoryTableModel.addColumn("Manager Name");
+        restDirectoryTableModel.addColumn("Username");
+        restDirectoryTableModel.addColumn("Password");
 
     }
 
@@ -95,6 +108,23 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         adminScreenTabbedPane = new javax.swing.JTabbedPane();
         deliveryAGentDirJPanel = new javax.swing.JPanel();
+        deliveryDirLabel = new javax.swing.JLabel();
+        delDirectoryScollPanel = new javax.swing.JScrollPane();
+        delDirTable = new javax.swing.JTable();
+        createDelAgentButton = new javax.swing.JButton();
+        updateDelAgentButton = new javax.swing.JButton();
+        viewDelAgentButton = new javax.swing.JButton();
+        deleteDelAgentButton = new javax.swing.JButton();
+        delAgentDirAdminHeaderLabel = new javax.swing.JLabel();
+        delAGentNameLabel = new javax.swing.JLabel();
+        delAgentNameTextField = new javax.swing.JTextField();
+        delAgentPhnLabel = new javax.swing.JLabel();
+        delAgentTextField = new javax.swing.JTextField();
+        delAGentUserName = new javax.swing.JLabel();
+        delAGentTextField = new javax.swing.JTextField();
+        restNameLabel8 = new javax.swing.JLabel();
+        delAgentPaswdField = new javax.swing.JPasswordField();
+        delAGentChangesButton = new javax.swing.JButton();
         personJPanel = new javax.swing.JPanel();
         personDirectoryScollPanel = new javax.swing.JScrollPane();
         personDirTable = new javax.swing.JTable();
@@ -169,15 +199,172 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         adminScreenTabbedPane.setForeground(new java.awt.Color(0, 0, 102));
         adminScreenTabbedPane.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
+        deliveryDirLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        deliveryDirLabel.setForeground(new java.awt.Color(0, 0, 102));
+        deliveryDirLabel.setText("Delivery Agents Directory");
+
+        delDirTable.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        delDirTable.setForeground(new java.awt.Color(0, 0, 102));
+        delDirTable.setModel(deliveryAgentDirectoryTableModel);
+        delDirTable.setRowHeight(40);
+        delDirectoryScollPanel.setViewportView(delDirTable);
+
+        createDelAgentButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        createDelAgentButton.setForeground(new java.awt.Color(0, 0, 102));
+        createDelAgentButton.setText("Create");
+        createDelAgentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createDelAgentButtonActionPerformed(evt);
+            }
+        });
+
+        updateDelAgentButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        updateDelAgentButton.setForeground(new java.awt.Color(0, 0, 102));
+        updateDelAgentButton.setText("Update");
+        updateDelAgentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateDelAgentButtonActionPerformed(evt);
+            }
+        });
+
+        viewDelAgentButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        viewDelAgentButton.setForeground(new java.awt.Color(0, 0, 102));
+        viewDelAgentButton.setText("View ");
+        viewDelAgentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewDelAgentButtonActionPerformed(evt);
+            }
+        });
+
+        deleteDelAgentButton.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        deleteDelAgentButton.setForeground(new java.awt.Color(0, 0, 102));
+        deleteDelAgentButton.setText("Delete");
+        deleteDelAgentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteDelAgentButtonActionPerformed(evt);
+            }
+        });
+
+        delAgentDirAdminHeaderLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        delAgentDirAdminHeaderLabel.setForeground(new java.awt.Color(0, 0, 102));
+        delAgentDirAdminHeaderLabel.setText(" ");
+
+        delAGentNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        delAGentNameLabel.setForeground(new java.awt.Color(0, 0, 102));
+        delAGentNameLabel.setText("Full Name:");
+
+        delAgentNameTextField.setForeground(new java.awt.Color(0, 0, 102));
+        delAgentNameTextField.setText(" ");
+
+        delAgentPhnLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        delAgentPhnLabel.setForeground(new java.awt.Color(0, 0, 102));
+        delAgentPhnLabel.setText("Phone Number :");
+
+        delAgentTextField.setForeground(new java.awt.Color(0, 0, 102));
+        delAgentTextField.setText(" ");
+
+        delAGentUserName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        delAGentUserName.setForeground(new java.awt.Color(0, 0, 102));
+        delAGentUserName.setText(" User Name:");
+
+        delAGentTextField.setForeground(new java.awt.Color(0, 0, 102));
+        delAGentTextField.setText(" ");
+
+        restNameLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        restNameLabel8.setForeground(new java.awt.Color(0, 0, 102));
+        restNameLabel8.setText(" Password:");
+
+        delAgentPaswdField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delAgentPaswdFieldActionPerformed(evt);
+            }
+        });
+
+        delAGentChangesButton.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        delAGentChangesButton.setForeground(new java.awt.Color(0, 0, 102));
+        delAGentChangesButton.setText("Save");
+        delAGentChangesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delAGentChangesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout deliveryAGentDirJPanelLayout = new javax.swing.GroupLayout(deliveryAGentDirJPanel);
         deliveryAGentDirJPanel.setLayout(deliveryAGentDirJPanelLayout);
         deliveryAGentDirJPanelLayout.setHorizontalGroup(
             deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1559, Short.MAX_VALUE)
+            .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryAGentDirJPanelLayout.createSequentialGroup()
+                        .addComponent(delAgentDirAdminHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createDelAgentButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateDelAgentButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewDelAgentButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteDelAgentButton)
+                        .addGap(146, 146, 146))
+                    .addComponent(delDirectoryScollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveryDirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
+            .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delAGentChangesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
+                        .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(delAGentUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(restNameLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(delAGentTextField)
+                            .addComponent(delAgentPaswdField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
+                        .addComponent(delAgentPhnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(delAgentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
+                        .addComponent(delAGentNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(delAgentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         deliveryAGentDirJPanelLayout.setVerticalGroup(
             deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(deliveryDirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(delDirectoryScollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteDelAgentButton)
+                    .addComponent(updateDelAgentButton)
+                    .addComponent(viewDelAgentButton)
+                    .addComponent(createDelAgentButton)
+                    .addComponent(delAgentDirAdminHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delAgentPhnLabel)
+                    .addComponent(delAgentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delAGentNameLabel)
+                    .addComponent(delAgentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delAGentUserName)
+                    .addComponent(delAGentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(restNameLabel8)
+                    .addComponent(delAgentPaswdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(delAGentChangesButton)
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         adminScreenTabbedPane.addTab("Delivery Agents Directory", deliveryAGentDirJPanel);
@@ -456,7 +643,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         restLocLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         restLocLabel.setForeground(new java.awt.Color(0, 0, 102));
-        restLocLabel.setText("Restaurant Name :");
+        restLocLabel.setText("Restaurant Location :");
 
         restLocTextField.setForeground(new java.awt.Color(0, 0, 102));
         restLocTextField.setText(" ");
@@ -548,8 +735,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(restAdminJpanelLayout.createSequentialGroup()
                                 .addGroup(restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(restAdminJpanelLayout.createSequentialGroup()
-                                        .addComponent(restLocLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(80, 80, 80)
+                                        .addComponent(restLocLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(64, 64, 64)
                                         .addComponent(restLocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(restAdminJpanelLayout.createSequentialGroup()
                                         .addComponent(restPhnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -883,6 +1070,30 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
         setAllTextFieldsForRestNull();
     }//GEN-LAST:event_saveChangesRestDirButtonActionPerformed
+
+    private void createDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDelAgentButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createDelAgentButtonActionPerformed
+
+    private void updateDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDelAgentButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateDelAgentButtonActionPerformed
+
+    private void viewDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDelAgentButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewDelAgentButtonActionPerformed
+
+    private void deleteDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDelAgentButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteDelAgentButtonActionPerformed
+
+    private void delAGentChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAGentChangesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delAGentChangesButtonActionPerformed
+
+    private void delAgentPaswdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAgentPaswdFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delAgentPaswdFieldActionPerformed
     private void updateAdminHeader(String text) {
         personDirAdminHeaderLabel.setText(text);
     }    
@@ -938,6 +1149,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     r.getUserAccount().getUsername(),
                     r.getUserAccount().getPassword()};
             restDirectoryTableModel.addRow(rowData);
+        }
+
+    }
+
+
+    private void populateDeliveryAgentDirectoryTable() {
+        deliveryAgentDirectoryTableModel.setRowCount(0);
+
+        for(DeliveryMan r: ecosystem.getDeliveryManDirectory().getDelAgents()) {
+
+            String[] rowData = {
+                    r.getName(),
+                    String.valueOf(r.getPhoneNumber()),
+                    r.getUserAccount().getUsername(),
+                    r.getUserAccount().getPassword()};
+            deliveryAgentDirectoryTableModel.addRow(rowData);
         }
 
     }
@@ -1121,10 +1348,24 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel allergyLabel;
     private javax.swing.JButton createButton;
     private javax.swing.JButton createButtonRest;
+    private javax.swing.JButton createDelAgentButton;
     private javax.swing.JList<String> cusineList;
+    private javax.swing.JButton delAGentChangesButton;
+    private javax.swing.JLabel delAGentNameLabel;
+    private javax.swing.JTextField delAGentTextField;
+    private javax.swing.JLabel delAGentUserName;
+    private javax.swing.JLabel delAgentDirAdminHeaderLabel;
+    private javax.swing.JTextField delAgentNameTextField;
+    private javax.swing.JPasswordField delAgentPaswdField;
+    private javax.swing.JLabel delAgentPhnLabel;
+    private javax.swing.JTextField delAgentTextField;
+    private javax.swing.JTable delDirTable;
+    private javax.swing.JScrollPane delDirectoryScollPanel;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteDelAgentButton;
     private javax.swing.JButton deleteRestButton;
     private javax.swing.JPanel deliveryAGentDirJPanel;
+    private javax.swing.JLabel deliveryDirLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1153,16 +1394,19 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel restNameLabel3;
     private javax.swing.JLabel restNameLabel4;
     private javax.swing.JLabel restNameLabel5;
+    private javax.swing.JLabel restNameLabel8;
     private javax.swing.JTextField restNameTextField;
     private javax.swing.JLabel restPhnLabel;
     private javax.swing.JTextField restPhnTextField;
     private javax.swing.JButton saveChangesButton;
     private javax.swing.JButton saveChangesRestDirButton;
     private javax.swing.JButton updateButton;
+    private javax.swing.JButton updateDelAgentButton;
     private javax.swing.JButton updateRestButton;
     private javax.swing.JLabel userNameLabel;
     private javax.swing.JTextField userNameTextField;
     private javax.swing.JButton viewButton;
+    private javax.swing.JButton viewDelAgentButton;
     private javax.swing.JButton viewRestButton;
     // End of variables declaration//GEN-END:variables
 }
