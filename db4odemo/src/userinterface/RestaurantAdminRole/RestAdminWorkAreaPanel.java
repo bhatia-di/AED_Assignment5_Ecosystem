@@ -49,13 +49,13 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     }
 
     private void initorderDirectoryTableModel() {
-        DefaultTableModel orderDirectoryTableModel = new DefaultTableModel();
+        orderDirectoryTableModel = new DefaultTableModel();
         orderDirectoryTableModel.addColumn(" Order Status");
 
 
     }
     private void initdeliveryAgentListModel() {
-
+        deliveryAgentListModel = new DefaultComboBoxModel();
         for (DeliveryMan deliveryMan: ecoSystem.getDeliveryManDirectory().getDelAgents()) {
             String name = deliveryMan.getName();
             if (deliveryAgentListModel.getIndexOf(name) == -1 ) deliveryAgentListModel.addElement(name);
@@ -72,7 +72,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
                 .get(0);
 
         restaurantNameLabel.setText(currentRestaurantWorkPanel.getRestName());
-        managerLabel.setText(currentRestaurantWorkPanel.getRestName());
+        managerLabel.setText(currentRestaurantWorkPanel.getManagerName());
     
     }
 
@@ -133,7 +133,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         menuItemName2 = new javax.swing.JLabel();
         menuItemName3 = new javax.swing.JLabel();
         deliveryManCombox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        saveOrderDetails = new javax.swing.JButton();
 
         restaurantNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         restaurantNameLabel.setForeground(new java.awt.Color(0, 0, 102));
@@ -278,6 +278,8 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         orderDirTable.setRowHeight(40);
         delDirectoryScollPanel1.setViewportView(orderDirTable);
 
+        acceptOrder.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        acceptOrder.setForeground(new java.awt.Color(0, 0, 102));
         acceptOrder.setText("Manage Order");
         acceptOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +301,9 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         deliveryManCombox.setForeground(new java.awt.Color(0, 0, 102));
         deliveryManCombox.setModel(deliveryAgentListModel);
 
-        jButton1.setText("Save");
+        saveOrderDetails.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        saveOrderDetails.setForeground(new java.awt.Color(0, 0, 102));
+        saveOrderDetails.setText("Save");
 
         javax.swing.GroupLayout manageOrdersTabLayout = new javax.swing.GroupLayout(manageOrdersTab);
         manageOrdersTab.setLayout(manageOrdersTabLayout);
@@ -326,7 +330,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
                                         .addComponent(menuItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(orderStatusCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1))))))
+                                    .addComponent(saveOrderDetails))))))
                 .addContainerGap(568, Short.MAX_VALUE))
         );
         manageOrdersTabLayout.setVerticalGroup(
@@ -350,7 +354,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
                             .addComponent(menuItemName3)
                             .addComponent(deliveryManCombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60)
-                        .addComponent(jButton1)))
+                        .addComponent(saveOrderDetails)))
                 .addContainerGap(236, Short.MAX_VALUE))
         );
 
@@ -439,7 +443,6 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel deliveryDirLabel1;
     private javax.swing.JComboBox<String> deliveryManCombox;
     private javax.swing.JLabel hiLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel manageOrdersTab;
     private javax.swing.JLabel managerLabel;
     private javax.swing.JTable menuDirTable;
@@ -453,5 +456,6 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> orderStatusCombobox;
     private javax.swing.JLabel restaurantNameLabel;
     private javax.swing.JButton saveMenuItemsButton;
+    private javax.swing.JButton saveOrderDetails;
     // End of variables declaration//GEN-END:variables
 }
