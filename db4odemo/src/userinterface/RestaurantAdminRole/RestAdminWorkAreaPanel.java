@@ -31,14 +31,15 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     
     /** Creates new form AdminWorkAreaJPanel */
     public RestAdminWorkAreaPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecoSystem) {
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.ecoSystem = ecoSystem;
         initMenuModel();
         initorderDirectoryTableModel();
         initdeliveryAgentListModel();
 
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
-        this.ecoSystem = ecoSystem;
+
         
         loadRestaurantValues();
         populateMenuItems();
