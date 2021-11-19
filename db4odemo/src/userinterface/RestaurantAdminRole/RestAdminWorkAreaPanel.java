@@ -5,11 +5,13 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.Restaurant.MenuItem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.stream.Collectors;
 
@@ -23,11 +25,15 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     EcoSystem ecoSystem;
     DefaultTableModel menuDirectoryTableModel;
     Restaurant currentRestaurantWorkPanel;
+    DefaultComboBoxModel deliveryAgentListModel;
+    DefaultTableModel orderDirectoryTableModel;
      
     
     /** Creates new form AdminWorkAreaJPanel */
     public RestAdminWorkAreaPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecoSystem) {
         initMenuModel();
+        initorderDirectoryTableModel();
+        initdeliveryAgentListModel();
 
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -39,6 +45,20 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
 
       
         //valueLabel.setText();
+    }
+
+    private void initorderDirectoryTableModel() {
+        DefaultTableModel orderDirectoryTableModel = new DefaultTableModel();
+        orderDirectoryTableModel.addColumn(" Order Status");
+
+
+    }
+    private void initdeliveryAgentListModel() {
+
+        for (DeliveryMan deliveryMan: ecoSystem.getDeliveryManDirectory().getDelAgents()) {
+            String name = deliveryMan.getName();
+            if (deliveryAgentListModel.getIndexOf(name) == -1 ) deliveryAgentListModel.addElement(name);
+        }
     }
     
     private void loadRestaurantValues() {
@@ -103,6 +123,16 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         ageSlider = new javax.swing.JSlider();
         ageLabelValue = new javax.swing.JLabel();
         deleteMenuItemButton = new javax.swing.JButton();
+        manageOrdersTab = new javax.swing.JPanel();
+        deliveryDirLabel1 = new javax.swing.JLabel();
+        delDirectoryScollPanel1 = new javax.swing.JScrollPane();
+        orderDirTable = new javax.swing.JTable();
+        acceptOrder = new javax.swing.JButton();
+        orderStatusCombobox = new javax.swing.JComboBox<>();
+        menuItemName2 = new javax.swing.JLabel();
+        menuItemName3 = new javax.swing.JLabel();
+        deliveryManCombox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         restaurantNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         restaurantNameLabel.setForeground(new java.awt.Color(0, 0, 102));
@@ -237,6 +267,94 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
 
         adminScreenTabbedPane.addTab("Manage Menu", menuPanel);
 
+        deliveryDirLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        deliveryDirLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        deliveryDirLabel1.setText("Order Directory");
+
+        orderDirTable.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        orderDirTable.setForeground(new java.awt.Color(0, 0, 102));
+        orderDirTable.setModel(orderDirectoryTableModel);
+        orderDirTable.setRowHeight(40);
+        delDirectoryScollPanel1.setViewportView(orderDirTable);
+
+        acceptOrder.setText("Manage Order");
+        acceptOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptOrderActionPerformed(evt);
+            }
+        });
+
+        orderStatusCombobox.setForeground(new java.awt.Color(0, 0, 102));
+        orderStatusCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Accept", "Reject", " " }));
+
+        menuItemName2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        menuItemName2.setForeground(new java.awt.Color(0, 0, 102));
+        menuItemName2.setText("Order Status:");
+
+        menuItemName3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        menuItemName3.setForeground(new java.awt.Color(0, 0, 102));
+        menuItemName3.setText("Delivery Man:");
+
+        deliveryManCombox.setForeground(new java.awt.Color(0, 0, 102));
+        deliveryManCombox.setModel(deliveryAgentListModel);
+
+        jButton1.setText("Save");
+
+        javax.swing.GroupLayout manageOrdersTabLayout = new javax.swing.GroupLayout(manageOrdersTab);
+        manageOrdersTab.setLayout(manageOrdersTabLayout);
+        manageOrdersTabLayout.setHorizontalGroup(
+            manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                        .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(acceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                                        .addComponent(menuItemName3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(deliveryManCombox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                                        .addComponent(menuItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(orderStatusCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton1))))))
+                .addContainerGap(568, Short.MAX_VALUE))
+        );
+        manageOrdersTabLayout.setVerticalGroup(
+            manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(acceptOrder)
+                        .addGap(13, 13, 13)
+                        .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(orderStatusCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(menuItemName2))
+                        .addGap(49, 49, 49)
+                        .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(menuItemName3)
+                            .addComponent(deliveryManCombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton1)))
+                .addContainerGap(236, Short.MAX_VALUE))
+        );
+
+        adminScreenTabbedPane.addTab("Manage Orders", manageOrdersTab);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -303,21 +421,35 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         populateMenuItems();
     }//GEN-LAST:event_deleteMenuItemButtonActionPerformed
 
+    private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptOrderActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acceptOrder;
     private javax.swing.JTabbedPane adminScreenTabbedPane;
     private javax.swing.JLabel ageLabelValue;
     private javax.swing.JSlider ageSlider;
     private javax.swing.JScrollPane delDirectoryScollPanel;
+    private javax.swing.JScrollPane delDirectoryScollPanel1;
     private javax.swing.JButton deleteMenuItemButton;
     private javax.swing.JLabel deliveryDirLabel;
+    private javax.swing.JLabel deliveryDirLabel1;
+    private javax.swing.JComboBox<String> deliveryManCombox;
     private javax.swing.JLabel hiLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel manageOrdersTab;
     private javax.swing.JLabel managerLabel;
     private javax.swing.JTable menuDirTable;
     private javax.swing.JLabel menuItemName;
     private javax.swing.JLabel menuItemName1;
+    private javax.swing.JLabel menuItemName2;
+    private javax.swing.JLabel menuItemName3;
     private javax.swing.JTextField menuItemTextF;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JTable orderDirTable;
+    private javax.swing.JComboBox<String> orderStatusCombobox;
     private javax.swing.JLabel restaurantNameLabel;
     private javax.swing.JButton saveMenuItemsButton;
     // End of variables declaration//GEN-END:variables
