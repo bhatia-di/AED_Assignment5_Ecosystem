@@ -57,11 +57,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     
      private void initDelAgentModel() {
-        restDirectoryTableModel = new DefaultTableModel();
-         restDirectoryTableModel.addColumn("Name");
-         restDirectoryTableModel.addColumn("Phone Number");
-         restDirectoryTableModel.addColumn("Username");
-         restDirectoryTableModel.addColumn("Password");
+         deliveryAgentDirectoryTableModel = new DefaultTableModel();
+         deliveryAgentDirectoryTableModel.addColumn("Name");
+         deliveryAgentDirectoryTableModel.addColumn("Phone Number");
+         deliveryAgentDirectoryTableModel.addColumn("Username");
+         deliveryAgentDirectoryTableModel.addColumn("Password");
 
     }
 
