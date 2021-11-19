@@ -20,7 +20,7 @@ public class Restaurant {
     private String restName;
     private String restLocation;
     private Long phoneNumber;
-    private ArrayList<String> menulist;
+    private ArrayList<MenuItem> menulist;
     private List<String> cuisine;
     private String managerName;
     private UserAccount userAccount;
@@ -28,7 +28,7 @@ public class Restaurant {
 
     public Restaurant() {
         restId = UUID.randomUUID().toString();
-        menulist = new ArrayList<String>();
+        menulist = new ArrayList<MenuItem>();
         cuisine = new ArrayList<>();
     }
 
@@ -64,12 +64,19 @@ public class Restaurant {
     }
 
 
-    public ArrayList<String> getMenulist() {
+    public ArrayList<MenuItem> getMenulist() {
         return menulist;
     }
 
-    public void setMenulist(ArrayList<String> menulist) {
+    public void setMenulist(ArrayList<MenuItem> menulist) {
         this.menulist = menulist;
+    }
+
+    public void addMenuItem(String item, int price) {
+        menulist.add(new MenuItem(item, price));
+    }
+    public void removeMenuItem(int index) {
+        menulist.remove(index);
     }
 
     public List<String> getCuisine() {

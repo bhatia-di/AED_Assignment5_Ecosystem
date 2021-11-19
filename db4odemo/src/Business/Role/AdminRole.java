@@ -8,7 +8,8 @@ import Business.EcoSystem;
 
 import Business.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.RestaurantAdminRole.AdminWorkAreaJPanel;
+import userinterface.RestaurantAdminRole.RestAdminWorkAreaPanel;
+
 import javax.swing.JPanel;
 
 /**
@@ -19,7 +20,7 @@ public class AdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer);
+        return new RestAdminWorkAreaPanel(userProcessContainer, account, business);
     }
 
     
