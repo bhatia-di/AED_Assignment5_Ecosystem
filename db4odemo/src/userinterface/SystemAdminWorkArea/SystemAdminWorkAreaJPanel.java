@@ -14,6 +14,7 @@ import Business.Organization;
 import Business.Restaurant.Restaurant;
 import Business.Role.AdminRole;
 import Business.Role.CustomerRole;
+import Business.Role.DeliverManRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 
@@ -119,7 +120,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         delAGentNameLabel = new javax.swing.JLabel();
         delAgentNameTextField = new javax.swing.JTextField();
         delAgentPhnLabel = new javax.swing.JLabel();
-        delAgentTextField = new javax.swing.JTextField();
+        delAgentPhnTextField = new javax.swing.JTextField();
         delAGentUserName = new javax.swing.JLabel();
         delAGentTextField = new javax.swing.JTextField();
         restNameLabel8 = new javax.swing.JLabel();
@@ -260,8 +261,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         delAgentPhnLabel.setForeground(new java.awt.Color(0, 0, 102));
         delAgentPhnLabel.setText("Phone Number :");
 
-        delAgentTextField.setForeground(new java.awt.Color(0, 0, 102));
-        delAgentTextField.setText(" ");
+        delAgentPhnTextField.setForeground(new java.awt.Color(0, 0, 102));
+        delAgentPhnTextField.setText(" ");
 
         delAGentUserName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         delAGentUserName.setForeground(new java.awt.Color(0, 0, 102));
@@ -325,7 +326,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
                         .addComponent(delAgentPhnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
-                        .addComponent(delAgentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(delAgentPhnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(deliveryAGentDirJPanelLayout.createSequentialGroup()
                         .addComponent(delAGentNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
@@ -349,7 +350,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delAgentPhnLabel)
-                    .addComponent(delAgentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(delAgentPhnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(deliveryAGentDirJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delAGentNameLabel)
@@ -1073,23 +1074,125 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void createDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDelAgentButtonActionPerformed
         // TODO add your handling code here:
+        updateDelAgentHeader("Create Delivery Agent record");
+        setAllTextFieldsForDelAgentEnabled();
     }//GEN-LAST:event_createDelAgentButtonActionPerformed
 
     private void updateDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDelAgentButtonActionPerformed
         // TODO add your handling code here:
+
+        updateDelAgentHeader("Update Delivery Agent record");
+        setAllTextFieldsForDelAgentEnabled();
+
+        int selectedRowIndex = delDirTable.getSelectedRow();
+
+        if(selectedRowIndex == -1) {
+            JOptionPane.showConfirmDialog(null,
+                    "No record selected to update the row", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        setValuesInDelDirectoryFrom(selectedRowIndex);
     }//GEN-LAST:event_updateDelAgentButtonActionPerformed
 
     private void viewDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDelAgentButtonActionPerformed
         // TODO add your handling code here:
+        updateDelAgentHeader("Viewing record below");
+
+        int selectedRowIndex = delDirTable.getSelectedRow();
+
+        if(selectedRowIndex == -1) {
+            JOptionPane.showConfirmDialog(null, "No record selected to view the row", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        setValuesInDelDirectoryFrom(selectedRowIndex);
+        setAllTextFieldsForDelAgentDisabled();
     }//GEN-LAST:event_viewDelAgentButtonActionPerformed
 
     private void deleteDelAgentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDelAgentButtonActionPerformed
         // TODO add your handling code here:
+        updateDelAgentHeader("Deleting selected record.");
+
+        int selectedRowIndex = delDirTable.getSelectedRow();
+
+        if(selectedRowIndex == -1) {
+            JOptionPane.showConfirmDialog(null,
+                    "No record selected to delete the row",
+                    "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete selected record?");
+        if(response == 0) {
+            ecosystem.getDeliveryManDirectory().removeDelAgentAtIndex(selectedRowIndex);
+        }
+        populateDeliveryAgentDirectoryTable();
     }//GEN-LAST:event_deleteDelAgentButtonActionPerformed
 
     private void delAGentChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAGentChangesButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_delAGentChangesButtonActionPerformed
+
+        if (delAgentDirAdminHeaderLabel.getText().contains("Create")) {
+
+            //ArrayList<Person> personDir = personDirectory.getPeople();
+            DeliveryMan newDelMan = new DeliveryMan();
+            int resp = saveDelAgentChangesFromUItoDelManObject(newDelMan);
+            if (resp == 1) {
+
+
+
+                Employee newEmployee = ecosystem.getEmployeeDirectory().createEmployee(newDelMan.getName());
+                UserAccount newUserAccount = ecosystem.getUserAccountDirectory()
+                        .createUserAccount(delAGentTextField.getText().trim(),
+                        String.valueOf(delAgentPaswdField.getPassword()), newEmployee, new DeliverManRole());
+
+                newDelMan.setUserAccount(newUserAccount);
+                ecosystem.getDeliveryManDirectory().createDelAgent(newDelMan);
+                populateDeliveryAgentDirectoryTable();
+                JOptionPane.showConfirmDialog(null,
+                        "Created delivery agent record successfully!",
+                        "Success!",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.PLAIN_MESSAGE);
+
+
+            }
+
+        }
+
+        if (restDirAdminHeaderLabel.getText().contains("Update")) {
+            int selectedIndex = delDirTable.getSelectedRow();
+            DeliveryMan deliveryManRecord = ecosystem.getDeliveryManDirectory().getDelAgentAtIndex(selectedIndex);
+            int resp = saveDelAgentChangesFromUItoDelManObject(deliveryManRecord);
+            if (resp == 1) {
+                ecosystem.getEmployeeDirectory().setEmployeeName(deliveryManRecord.getName(), deliveryManRecord.getUserAccount().getEmployee().getId());
+                ecosystem.getUserAccountDirectory().updateUserAccountValues(deliveryManRecord.getUserAccount().getUserAccountId(),
+                        restManagerUserNameTextField.getText().trim(),
+                        String.valueOf(restManagerPaswdField.getPassword()));
+
+                ecosystem.getDeliveryManDirectory().setDelAGentAtIndex(selectedIndex, deliveryManRecord);
+                populateDeliveryAgentDirectoryTable();
+
+                JOptionPane.showConfirmDialog(null,
+                        "Delivery AGent record updated successfully!",
+                        "Success!",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.PLAIN_MESSAGE);
+
+            }
+        }
+
+
+        setAllTextFieldsForDelAgentNull();
+
+        }//GEN-LAST:event_delAGentChangesButtonActionPerformed
 
     private void delAgentPaswdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAgentPaswdFieldActionPerformed
         // TODO add your handling code here:
@@ -1097,7 +1200,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void updateAdminHeader(String text) {
         personDirAdminHeaderLabel.setText(text);
     }    
-    
+    private void updateDelAgentHeader(String text) {
+        delAgentDirAdminHeaderLabel.setText(text);
+    }
     private void updateResDirHeader(String text) {
         restDirAdminHeaderLabel.setText(text);
     }
@@ -1110,7 +1215,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         addressTextField.setText(customerRecord.getAddress());
         userNameTextField.setText(customerRecord.getUserAccount().getUsername());
         
-    }    
+    }
+
+    private void setValuesInDelDirectoryFrom(int selectedRowIndex) {
+        DeliveryMan deliveryMan = ecosystem.getDeliveryManDirectory().getDelAgentAtIndex(selectedRowIndex);
+        delAgentPhnTextField.setText(deliveryMan.getPhoneNumber().toString());
+        delAgentNameTextField.setText(deliveryMan.getName());
+        delAgentNameTextField.setText(deliveryMan.getUserAccount().getUsername());
+        //delAgentPaswdField.
+    }
 
 
     private void setValuesInRestDirForm(int selectedRowIndex) {
@@ -1193,6 +1306,31 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         userNameTextField.setEnabled(true);
         paswdPaswdField.setEnabled(true);
         ageSlider.setEnabled(true);
+    }
+    private void setAllTextFieldsForDelAgentEnabled () {
+        boolean enabledValue = true;
+        delAgentNameTextField.setEnabled(enabledValue);
+        delAgentPhnTextField.setEnabled(enabledValue);
+        delAGentTextField.setEnabled(enabledValue);
+        delAgentPaswdField.setEnabled(enabledValue);
+
+    }
+
+    private void setAllTextFieldsForDelAgentDisabled () {
+        boolean enabledValue = false;
+        delAgentNameTextField.setEnabled(enabledValue);
+        delAgentPhnTextField.setEnabled(enabledValue);
+        delAGentTextField.setEnabled(enabledValue);
+        delAgentPaswdField.setEnabled(enabledValue);
+
+    }
+
+    private void setAllTextFieldsForDelAgentNull () {
+        delAgentNameTextField.setText("");
+        delAgentPhnTextField.setText("");
+        delAGentTextField.setText("");
+        delAgentPaswdField.setText("");
+
     }
     
     
@@ -1334,8 +1472,68 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
 
     }
-    
-    
+
+
+    private int saveDelAgentChangesFromUItoDelManObject(DeliveryMan deliveryMan) {
+
+        String phoneNumber = delAgentPhnTextField.getText().trim();
+        String name = delAgentNameTextField.getText().trim();
+        String username = delAGentTextField.getText().trim();
+        String password = String.valueOf(delAgentPaswdField.getPassword());
+
+
+
+
+
+
+
+
+        if (name.isEmpty()) {
+
+            JOptionPane.showConfirmDialog(null, "Please verify values for Delivery Agent name. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+        }
+
+        if (phoneNumber.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Please verify values for Delivery Agent phone number. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+
+        }
+        if (username.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Please verify values for Del Agent Username. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+
+        }
+
+        if (password.isEmpty()) {
+            JOptionPane.showConfirmDialog(null, "Please verify values for Del agent Paswd. It should non-empty.", "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            return 0;
+
+
+        }
+
+        deliveryMan.setName(name);
+        deliveryMan.setPhoneNumber(Long.valueOf(phoneNumber));
+
+        return 1;
+
+
+
+    }
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
@@ -1358,7 +1556,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField delAgentNameTextField;
     private javax.swing.JPasswordField delAgentPaswdField;
     private javax.swing.JLabel delAgentPhnLabel;
-    private javax.swing.JTextField delAgentTextField;
+    private javax.swing.JTextField delAgentPhnTextField;
     private javax.swing.JTable delDirTable;
     private javax.swing.JScrollPane delDirectoryScollPanel;
     private javax.swing.JButton deleteButton;
