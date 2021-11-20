@@ -77,8 +77,9 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     }
 
     private void populateMenuItems() {
+        menuDirectoryTableModel.setRowCount(0);
+
         for(MenuItem menuItem: currentRestaurantWorkPanel.getMenulist()) {
-            menuDirectoryTableModel.setRowCount(0);
             String[] rowData = {menuItem.getMenuItemName() , "$ " + String.valueOf(menuItem.getMenuItemPrice())};
             menuDirectoryTableModel.addRow(rowData);
         }
