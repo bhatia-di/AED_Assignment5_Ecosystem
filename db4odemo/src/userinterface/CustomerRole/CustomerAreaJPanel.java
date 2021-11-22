@@ -10,9 +10,11 @@ import Business.Restaurant.MenuItem;
 
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +32,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private DefaultComboBoxModel restListComboBox;
     private DefaultListModel restMenuList;
+    private DefaultTableModel orderDirectoryTableModel;
+         
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -39,15 +43,38 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         this.userAccount = account;
         this.ecoSystem = ecoSystem;
+        initOrderTableModel();
 
         populateRequestTable();
         initRestCombox();
         restMenuList = new DefaultListModel();
 
         initComponents();
+        populateOrderTable();
         
         //valueLabel.setText(enterprise.getName());
 
+    }
+    private void initOrderTableModel() {
+        orderDirectoryTableModel = new DefaultTableModel();
+        orderDirectoryTableModel.addColumn("My Message");
+        orderDirectoryTableModel.addColumn("Receiver Name");
+        orderDirectoryTableModel.addColumn("Order Status");
+
+    }
+    
+    private void populateOrderTable() {
+        orderDirectoryTableModel.setRowCount(0);
+        for (WorkRequest orderWorkRequest: userAccount.getWorkQueue().getWorkRequestList()) {
+        String[] rowData = {
+            orderWorkRequest.getMessage(),
+            orderWorkRequest.getReceiver().getUsername(),
+            orderWorkRequest.getStatus()      
+        };
+        
+        orderDirectoryTableModel.addRow(rowData);
+        }
+    
     }
 
     private void initRestCombox() {
@@ -83,7 +110,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         menuItemName4 = new javax.swing.JLabel();
         totalOrderValue = new javax.swing.JLabel();
         placeOrder = new javax.swing.JButton();
+        addToCartButtton = new javax.swing.JButton();
+        commentLabe = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        commentTextArea = new javax.swing.JTextArea();
         previousOrderJPanel = new javax.swing.JPanel();
+        delDirectoryScollPanel1 = new javax.swing.JScrollPane();
+        orderDirTable = new javax.swing.JTable();
 
         menuItemName2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItemName2.setForeground(new java.awt.Color(0, 0, 102));
@@ -117,6 +150,26 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         placeOrder.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         placeOrder.setForeground(new java.awt.Color(0, 0, 102));
         placeOrder.setText("Place Order");
+        placeOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeOrderActionPerformed(evt);
+            }
+        });
+
+        addToCartButtton.setText("Add to Cart");
+        addToCartButtton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToCartButttonActionPerformed(evt);
+            }
+        });
+
+        commentLabe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        commentLabe.setForeground(new java.awt.Color(0, 0, 102));
+        commentLabe.setText("Comments: ");
+
+        commentTextArea.setColumns(20);
+        commentTextArea.setRows(5);
+        jScrollPane1.setViewportView(commentTextArea);
 
         javax.swing.GroupLayout newOrderJPanelLayout = new javax.swing.GroupLayout(newOrderJPanel);
         newOrderJPanel.setLayout(newOrderJPanelLayout);
@@ -124,20 +177,28 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newOrderJPanelLayout.createSequentialGroup()
                 .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(placeOrder)
+                    .addComponent(menuItemName3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addToCartButtton)
+                    .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(restListCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(newOrderJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(newOrderJPanelLayout.createSequentialGroup()
                         .addComponent(menuItemName4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(totalOrderValue, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(newOrderJPanelLayout.createSequentialGroup()
-                        .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(menuItemName3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(menuItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(restListCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 618, Short.MAX_VALUE))
+                        .addComponent(commentLabe, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(placeOrder))
+                .addContainerGap(536, Short.MAX_VALUE))
         );
         newOrderJPanelLayout.setVerticalGroup(
             newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,29 +214,50 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addGroup(newOrderJPanelLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(menuItemName3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(addToCartButtton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(menuItemName4)
                     .addComponent(totalOrderValue))
-                .addGap(30, 30, 30)
+                .addGroup(newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(newOrderJPanelLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(commentLabe))
+                    .addGroup(newOrderJPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45)
                 .addComponent(placeOrder)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         custAreaPanel.addTab("New Order", newOrderJPanel);
+
+        orderDirTable.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        orderDirTable.setForeground(new java.awt.Color(0, 0, 102));
+        orderDirTable.setModel(orderDirectoryTableModel);
+        orderDirTable.setRowHeight(40);
+        delDirectoryScollPanel1.setViewportView(orderDirTable);
 
         javax.swing.GroupLayout previousOrderJPanelLayout = new javax.swing.GroupLayout(previousOrderJPanel);
         previousOrderJPanel.setLayout(previousOrderJPanelLayout);
         previousOrderJPanelLayout.setHorizontalGroup(
             previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1091, Short.MAX_VALUE)
+            .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(503, Short.MAX_VALUE))
         );
         previousOrderJPanelLayout.setVerticalGroup(
             previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
-        custAreaPanel.addTab("Previous Orders", previousOrderJPanel);
+        custAreaPanel.addTab("All Orders", previousOrderJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -210,14 +292,65 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_restListComboboxActionPerformed
 
+    private void addToCartButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButttonActionPerformed
+        // TODO add your handling code here:
+        
+        List<String> menulistList = menuList.getSelectedValuesList();
+        String restName = (String) restListComboBox.getSelectedItem();
+
+        Restaurant rest = ecoSystem.getRestaurantDirectory().getRestList()
+                .stream().filter(r -> r.getRestName().equals(restName))
+                .collect(Collectors.toList())
+                .get(0);
+        
+        int total = 0;
+        
+        for (String menu: menulistList) {
+            int price = rest.getMenulist().stream().filter(r -> r.getMenuItemName()
+                    .equals(menu))
+                .collect(Collectors.toList())
+                .get(0).getMenuItemPrice();
+            total+=price;
+        }
+        totalOrderValue.setText(String.valueOf(total));
+    }//GEN-LAST:event_addToCartButttonActionPerformed
+
+    private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
+        // TODO add your handling code here:
+        
+        
+        OrderWorkRequest request = new OrderWorkRequest();
+        String restName = (String) restListComboBox.getSelectedItem();
+
+        Restaurant rest = ecoSystem.getRestaurantDirectory().getRestList()
+                .stream().filter(r -> r.getRestName().equals(restName))
+                .collect(Collectors.toList())
+                .get(0);
+        
+        request.setMessage(commentTextArea.getText().trim());
+       
+        request.setSender(userAccount);
+        request.setStatus("Ordered");
+        
+        userAccount.getWorkQueue().getWorkRequestList().add(request);
+        rest.getUserAccount().getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Placed Order Successfully");
+    }//GEN-LAST:event_placeOrderActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToCartButtton;
     private javax.swing.JScrollPane allergyJListPane;
+    private javax.swing.JLabel commentLabe;
+    private javax.swing.JTextArea commentTextArea;
     private javax.swing.JTabbedPane custAreaPanel;
+    private javax.swing.JScrollPane delDirectoryScollPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel menuItemName2;
     private javax.swing.JLabel menuItemName3;
     private javax.swing.JLabel menuItemName4;
     private javax.swing.JList<String> menuList;
     private javax.swing.JPanel newOrderJPanel;
+    private javax.swing.JTable orderDirTable;
     private javax.swing.JButton placeOrder;
     private javax.swing.JPanel previousOrderJPanel;
     private javax.swing.JComboBox<String> restListCombobox;
