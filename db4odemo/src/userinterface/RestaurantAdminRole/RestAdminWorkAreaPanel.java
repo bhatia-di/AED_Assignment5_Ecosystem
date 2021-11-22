@@ -73,6 +73,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         orderDirectoryTableModel.addColumn(" Order Message");
         orderDirectoryTableModel.addColumn(" Order Sender");
         orderDirectoryTableModel.addColumn(" Order Status");
+        orderDirectoryTableModel.addColumn(" Customer Feedback");
 
 
     }
