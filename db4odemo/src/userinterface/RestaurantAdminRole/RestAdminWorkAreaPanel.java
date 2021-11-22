@@ -74,6 +74,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     }
     private void initdeliveryAgentListModel() {
         deliveryAgentListModel = new DefaultComboBoxModel();
+        deliveryAgentListModel.addElement("-");
         for (DeliveryMan deliveryMan: ecoSystem.getDeliveryManDirectory().getDelAgents()) {
             String name = deliveryMan.getName();
             if (deliveryAgentListModel.getIndexOf(name) == -1 ) deliveryAgentListModel.addElement(name);
@@ -307,7 +308,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         });
 
         orderStatusCombobox.setForeground(new java.awt.Color(0, 0, 102));
-        orderStatusCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Accept", "Reject", " " }));
+        orderStatusCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Accept", "Reject" }));
 
         menuItemName2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItemName2.setForeground(new java.awt.Color(0, 0, 102));
