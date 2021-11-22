@@ -49,7 +49,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
-        populateTree();
+        //populateTree();
         populateCustomerDirectoryTable();
         populateRestaurantDirectoryTable();
         populateDeliveryAgentDirectoryTable();
@@ -87,12 +87,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     }
 
-    public void populateTree(){
-        DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-       // Add the code for draw your system structure shown by JTree
-       
-        model.reload();
-    }
+//    public void populateTree(){
+//        DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
+//       // Add the code for draw your system structure shown by JTree
+//       
+//        model.reload();
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,10 +102,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
         adminScreenTabbedPane = new javax.swing.JTabbedPane();
         deliveryAGentDirJPanel = new javax.swing.JPanel();
@@ -174,28 +170,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         restManagerPaswdField = new javax.swing.JPasswordField();
 
         setLayout(new java.awt.BorderLayout());
-
-        jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-                jTreeValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTree);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1194, Short.MAX_VALUE)
-        );
-
-        jSplitPane.setLeftComponent(jPanel1);
 
         adminScreenTabbedPane.setForeground(new java.awt.Color(0, 0, 102));
         adminScreenTabbedPane.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -749,7 +723,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                         .addComponent(restManagerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(41, 41, 41)
                                 .addComponent(allergyJListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(47, Short.MAX_VALUE))))
+                        .addContainerGap(185, Short.MAX_VALUE))))
         );
         restAdminJpanelLayout.setVerticalGroup(
             restAdminJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,9 +794,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(250, Short.MAX_VALUE))
         );
 
-        jSplitPane.setRightComponent(jPanel2);
-
-        add(jSplitPane, java.awt.BorderLayout.CENTER);
+        add(jPanel2, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
@@ -1189,14 +1161,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void delAgentPaswdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAgentPaswdFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_delAgentPaswdFieldActionPerformed
-
-    private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
-
-        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-        if(selectedNode!=null){
-            //lblSelectedNode.setText(selectedNode.toString());
-        }
-    }//GEN-LAST:event_jTreeValueChanged
     private void updateAdminHeader(String text) {
         personDirAdminHeaderLabel.setText(text);
     }    
@@ -1564,11 +1528,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton deleteRestButton;
     private javax.swing.JPanel deliveryAGentDirJPanel;
     private javax.swing.JLabel deliveryDirLabel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane;
-    private javax.swing.JTree jTree;
     private javax.swing.JLabel paswdLabel;
     private javax.swing.JPasswordField paswdPaswdField;
     private javax.swing.JLabel personDirAdminHeaderLabel;
