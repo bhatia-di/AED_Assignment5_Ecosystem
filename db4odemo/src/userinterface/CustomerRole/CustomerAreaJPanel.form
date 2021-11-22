@@ -112,7 +112,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="addToCartButtton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="menuItemName4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="totalOrderValue" alignment="3" min="-2" max="-2" attributes="0"/>
