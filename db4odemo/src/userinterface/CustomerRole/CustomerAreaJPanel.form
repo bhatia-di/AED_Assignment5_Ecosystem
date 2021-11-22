@@ -206,8 +206,8 @@
         <Container class="javax.swing.JPanel" name="previousOrderJPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Previous Order">
-                <Property name="tabTitle" type="java.lang.String" value="Previous Order"/>
+              <JTabbedPaneConstraints tabName="Previous Orders">
+                <Property name="tabTitle" type="java.lang.String" value="Previous Orders"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

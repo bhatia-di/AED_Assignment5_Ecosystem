@@ -175,7 +175,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             .addGap(0, 670, Short.MAX_VALUE)
         );
 
-        custAreaPanel.addTab("Previous Order", previousOrderJPanel);
+        custAreaPanel.addTab("Previous Orders", previousOrderJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
