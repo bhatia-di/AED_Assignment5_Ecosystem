@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Restaurant.MenuItem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 
 import javax.swing.*;
@@ -54,10 +55,13 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     private void populateOrderTable() {
         orderDirectoryTableModel.setRowCount(0);
         for (WorkRequest orderWorkRequest: currentRestaurantWorkPanel.getUserAccount().getWorkQueue().getWorkRequestList()) {
+            OrderWorkRequest order = (OrderWorkRequest) orderWorkRequest;
+
             String[] rowData = {
-                    orderWorkRequest.getMessage(),
-                    orderWorkRequest.getSender().getUsername(),
-                    orderWorkRequest.getStatus()
+                    order.getMessage(),
+                    order.getSender().getUsername(),
+                    order.getStatus(),
+                    order.getCustomerFeedback()
             };
 
             orderDirectoryTableModel.addRow(rowData);
