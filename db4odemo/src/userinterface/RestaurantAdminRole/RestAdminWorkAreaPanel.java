@@ -468,14 +468,22 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
                 .get(0).setStatus((String)orderStatusCombobox.getSelectedItem());
         
         //update delivery work queue
+        String status = (String)orderStatusCombobox.getSelectedItem();
+
+        if (status.equals("Accept")) {
+
+            DeliveryMan selectedDeliveryMan = ecoSystem.getDeliveryManDirectory().getDelAgents()
+                    .stream().filter(delMan -> delMan.getName().equals((String)deliveryManCombox.getSelectedItem())) .collect(Collectors.toList())
+                    .get(0);
+
+            selectedDeliveryMan.getUserAccount().getWorkQueue().getWorkRequestList().add(selectedWorkRequest);
+
+
+
+
+        }
         
-        DeliveryMan selectedDeliveryMan = ecoSystem.getDeliveryManDirectory().getDelAgents()
-                .stream().filter(delMan -> delMan.getName().equals((String)deliveryManCombox.getSelectedItem())) .collect(Collectors.toList())
-                .get(0);
-        
-        selectedDeliveryMan.getUserAccount().getWorkQueue().getWorkRequestList().add(selectedWorkRequest);
-        
-        
+
         
         
     }//GEN-LAST:event_saveOrderDetailsActionPerformed
