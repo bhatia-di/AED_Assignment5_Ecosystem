@@ -35,6 +35,14 @@ public class RestaurantDirectory {
         return restaurants.get(index);
 
     }
+     public Restaurant getRestaurantWithUserAccountId(String accId) {
+        return restaurants.stream().filter(c -> c.getUserAccount().getUserAccountId().equals(accId))
+                .collect(Collectors.toList()).get(0);
+    
+    
+    
+    }
+
 
     public Restaurant createRestaurant(Restaurant newRest) {
 

@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Restaurant.MenuItem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -43,13 +44,30 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         
         loadRestaurantValues();
         populateMenuItems();
+        populateOrderTable();
 
       
         //valueLabel.setText();
     }
 
+
+    private void populateOrderTable() {
+        orderDirectoryTableModel.setRowCount(0);
+        for (WorkRequest orderWorkRequest: currentRestaurantWorkPanel.getUserAccount().getWorkQueue().getWorkRequestList()) {
+            String[] rowData = {
+                    orderWorkRequest.getMessage(),
+                    orderWorkRequest.getSender().getUsername(),
+                    orderWorkRequest.getStatus()
+            };
+
+            orderDirectoryTableModel.addRow(rowData);
+        }
+
+    }
     private void initorderDirectoryTableModel() {
         orderDirectoryTableModel = new DefaultTableModel();
+        orderDirectoryTableModel.addColumn(" Order Message");
+        orderDirectoryTableModel.addColumn(" Order Sender");
         orderDirectoryTableModel.addColumn(" Order Status");
 
 
@@ -305,6 +323,11 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
         saveOrderDetails.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         saveOrderDetails.setForeground(new java.awt.Color(0, 0, 102));
         saveOrderDetails.setText("Save");
+        saveOrderDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveOrderDetailsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout manageOrdersTabLayout = new javax.swing.GroupLayout(manageOrdersTab);
         manageOrdersTab.setLayout(manageOrdersTabLayout);
@@ -430,6 +453,31 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
     private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_acceptOrderActionPerformed
+
+    private void saveOrderDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveOrderDetailsActionPerformed
+        // TODO add your handling code here:
+        WorkRequest selectedWorkRequest = currentRestaurantWorkPanel.getUserAccount().getWorkQueue().getWorkRequestList().get(orderDirTable.getSelectedRow());
+        selectedWorkRequest.setStatus((String)orderStatusCombobox.getSelectedItem());
+        
+        
+        // update customer work queue
+        selectedWorkRequest.getSender().getWorkQueue().getWorkRequestList().stream()
+                .filter(workRequest -> workRequest.getReqId().equals(selectedWorkRequest.getReqId()))
+                .collect(Collectors.toList())
+                .get(0).setStatus((String)orderStatusCombobox.getSelectedItem());
+        
+        //update delivery work queue
+        
+        DeliveryMan selectedDeliveryMan = ecoSystem.getDeliveryManDirectory().getDelAgents()
+                .stream().filter(delMan -> delMan.getName().equals((String)deliveryManCombox.getSelectedItem())) .collect(Collectors.toList())
+                .get(0);
+        
+        selectedDeliveryMan.getUserAccount().getWorkQueue().getWorkRequestList().add(selectedWorkRequest);
+        
+        
+        
+        
+    }//GEN-LAST:event_saveOrderDetailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

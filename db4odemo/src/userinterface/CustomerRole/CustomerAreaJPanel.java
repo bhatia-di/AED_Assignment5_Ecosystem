@@ -79,6 +79,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void initRestCombox() {
         restListComboBox = new DefaultComboBoxModel();
+        restListComboBox.addElement(" - ");
         for (Restaurant restaurant: ecoSystem.getRestaurantDirectory().getRestList()) {
             String name = restaurant.getRestName();
             if (restListComboBox.getIndexOf(name) == -1 ) restListComboBox.addElement(name);
@@ -117,6 +118,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         previousOrderJPanel = new javax.swing.JPanel();
         delDirectoryScollPanel1 = new javax.swing.JScrollPane();
         orderDirTable = new javax.swing.JTable();
+        deliveryDirLabel1 = new javax.swing.JLabel();
 
         menuItemName2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItemName2.setForeground(new java.awt.Color(0, 0, 102));
@@ -240,21 +242,29 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         orderDirTable.setRowHeight(40);
         delDirectoryScollPanel1.setViewportView(orderDirTable);
 
+        deliveryDirLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        deliveryDirLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        deliveryDirLabel1.setText("Order Directory");
+
         javax.swing.GroupLayout previousOrderJPanelLayout = new javax.swing.GroupLayout(previousOrderJPanel);
         previousOrderJPanel.setLayout(previousOrderJPanelLayout);
         previousOrderJPanelLayout.setHorizontalGroup(
             previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(previousOrderJPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(503, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(498, Short.MAX_VALUE))
         );
         previousOrderJPanelLayout.setVerticalGroup(
             previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(previousOrderJPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
+                .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         custAreaPanel.addTab("All Orders", previousOrderJPanel);
@@ -330,10 +340,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         request.setMessage(commentTextArea.getText().trim());
        
         request.setSender(userAccount);
+        request.setReceiver(rest.getUserAccount());
         request.setStatus("Ordered");
         
         userAccount.getWorkQueue().getWorkRequestList().add(request);
         rest.getUserAccount().getWorkQueue().getWorkRequestList().add(request);
+        populateOrderTable();
         JOptionPane.showMessageDialog(null, "Placed Order Successfully");
     }//GEN-LAST:event_placeOrderActionPerformed
 
@@ -344,6 +356,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea commentTextArea;
     private javax.swing.JTabbedPane custAreaPanel;
     private javax.swing.JScrollPane delDirectoryScollPanel1;
+    private javax.swing.JLabel deliveryDirLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel menuItemName2;
     private javax.swing.JLabel menuItemName3;

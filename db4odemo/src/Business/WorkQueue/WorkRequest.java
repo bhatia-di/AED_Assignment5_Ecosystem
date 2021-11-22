@@ -27,6 +27,9 @@ public abstract class WorkRequest {
         requestDate = new Date();
         requestId = UUID.randomUUID().toString();
     }
+    public String getReqId() {
+        return requestId;
+    }
 
     public String getMessage() {
         return message;

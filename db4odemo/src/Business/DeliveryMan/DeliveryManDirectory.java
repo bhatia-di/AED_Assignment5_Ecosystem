@@ -9,6 +9,7 @@ import Business.Restaurant.Restaurant;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -50,6 +51,14 @@ public class DeliveryManDirectory {
         setLastUpdatedTimestamp(LocalDateTime.now());
 
 
+    }
+    
+    public DeliveryMan getDeliveryManWithUserAccountId(String accId) {
+        return delAGents.stream().filter(c -> c.getUserAccount().getUserAccountId().equals(accId))
+                .collect(Collectors.toList()).get(0);
+    
+    
+    
     }
 
     public void removeDelAgentAtIndex(int index) {

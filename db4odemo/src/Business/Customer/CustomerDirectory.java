@@ -8,6 +8,7 @@ package Business.Customer;
 import Business.UserAccount.UserAccount;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -37,6 +38,14 @@ public class CustomerDirectory {
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+    
+    public Customer getCustomerWithUserAccountId(String accId) {
+        return customers.stream().filter(c -> c.getUserAccount().getUserAccountId().equals(accId))
+                .collect(Collectors.toList()).get(0);
+    
+    
+    
     }
 
     public void setCustomers(ArrayList<Customer> customers) {
