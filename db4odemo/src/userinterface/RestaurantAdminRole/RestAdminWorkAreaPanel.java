@@ -482,6 +482,8 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
 
 
         }
+        JOptionPane.showMessageDialog(null, "Order Status Updated Successfully");
+
         
 
         

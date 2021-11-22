@@ -11,6 +11,7 @@ import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -195,7 +196,8 @@ public class DeliveryManWorkAreaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         userAccount.getWorkQueue().getWorkRequestList().get(orderDirTable.getSelectedRow())
                 .setStatus((String) orderStatusCombobox.getSelectedItem());
-        
+        populateTable();
+        JOptionPane.showMessageDialog(null, "Order Status Updated Successfully");
 
       
     }//GEN-LAST:event_saveChangesButtonActionPerformed
