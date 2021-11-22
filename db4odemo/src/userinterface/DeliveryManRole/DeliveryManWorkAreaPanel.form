@@ -32,8 +32,8 @@
                               <EmptySpace min="-2" pref="430" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="delDirectoryScollPanel1" min="-2" pref="678" max="-2" attributes="0"/>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                              <Component id="delDirectoryScollPanel1" pref="698" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="menuItemName2" min="-2" pref="195" max="-2" attributes="0"/>
