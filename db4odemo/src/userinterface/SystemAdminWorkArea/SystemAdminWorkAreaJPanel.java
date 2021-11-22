@@ -1221,7 +1221,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         DeliveryMan deliveryMan = ecosystem.getDeliveryManDirectory().getDelAgentAtIndex(selectedRowIndex);
         delAgentPhnTextField.setText(deliveryMan.getPhoneNumber().toString());
         delAgentNameTextField.setText(deliveryMan.getName());
-        delAgentNameTextField.setText(deliveryMan.getUserAccount().getUsername());
+        delAGentTextField.setText(deliveryMan.getUserAccount().getUsername());
         //delAgentPaswdField.
     }
 
