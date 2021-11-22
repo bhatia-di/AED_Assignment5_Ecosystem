@@ -11,6 +11,15 @@ package Business.WorkQueue;
  */
 public class OrderWorkRequest extends WorkRequest {
      private String userMessage;
+     private String customerFeedback;
+
+    public String getCustomerFeedback() {
+        return customerFeedback;
+    }
+
+    public void setCustomerFeedback(String customerFeedback) {
+        this.customerFeedback = customerFeedback;
+    }
 
     public String getUserMessage() {
         return userMessage;
