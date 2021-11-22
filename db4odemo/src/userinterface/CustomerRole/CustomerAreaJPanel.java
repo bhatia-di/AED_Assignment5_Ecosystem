@@ -60,16 +60,19 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         orderDirectoryTableModel.addColumn("My Message");
         orderDirectoryTableModel.addColumn("Receiver Name");
         orderDirectoryTableModel.addColumn("Order Status");
+        orderDirectoryTableModel.addColumn("Order Feedback");
 
     }
     
     private void populateOrderTable() {
         orderDirectoryTableModel.setRowCount(0);
         for (WorkRequest orderWorkRequest: userAccount.getWorkQueue().getWorkRequestList()) {
+            OrderWorkRequest order = (OrderWorkRequest) orderWorkRequest;
         String[] rowData = {
-            orderWorkRequest.getMessage(),
-            orderWorkRequest.getReceiver().getUsername(),
-            orderWorkRequest.getStatus()      
+            order.getMessage(),
+            order.getReceiver().getUsername(),
+            order.getStatus(),
+            order.getCustomerFeedback()
         };
         
         orderDirectoryTableModel.addRow(rowData);
@@ -119,6 +122,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         delDirectoryScollPanel1 = new javax.swing.JScrollPane();
         orderDirTable = new javax.swing.JTable();
         deliveryDirLabel1 = new javax.swing.JLabel();
+        commentLabe1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        commentTextArea1 = new javax.swing.JTextArea();
+        saveChangesButton = new javax.swing.JButton();
 
         custAreaPanel.setForeground(new java.awt.Color(0, 0, 102));
         custAreaPanel.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
@@ -203,7 +210,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(placeOrder))
-                .addContainerGap(536, Short.MAX_VALUE))
+                .addContainerGap(605, Short.MAX_VALUE))
         );
         newOrderJPanelLayout.setVerticalGroup(
             newOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,6 +256,23 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         deliveryDirLabel1.setForeground(new java.awt.Color(0, 0, 102));
         deliveryDirLabel1.setText("Order Directory");
 
+        commentLabe1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        commentLabe1.setForeground(new java.awt.Color(0, 0, 102));
+        commentLabe1.setText("Feedback:");
+
+        commentTextArea1.setColumns(20);
+        commentTextArea1.setRows(5);
+        jScrollPane2.setViewportView(commentTextArea1);
+
+        saveChangesButton.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        saveChangesButton.setForeground(new java.awt.Color(0, 0, 102));
+        saveChangesButton.setText("Save");
+        saveChangesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveChangesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout previousOrderJPanelLayout = new javax.swing.GroupLayout(previousOrderJPanel);
         previousOrderJPanel.setLayout(previousOrderJPanelLayout);
         previousOrderJPanelLayout.setHorizontalGroup(
@@ -257,16 +281,36 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(498, Short.MAX_VALUE))
+                    .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                        .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                                .addComponent(commentLabe1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(saveChangesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         previousOrderJPanelLayout.setVerticalGroup(
             previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(previousOrderJPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                        .addGroup(previousOrderJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(commentLabe1))
+                            .addGroup(previousOrderJPanelLayout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(46, 46, 46)
+                        .addComponent(saveChangesButton)))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
@@ -352,15 +396,28 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Placed Order Successfully");
     }//GEN-LAST:event_placeOrderActionPerformed
 
+    private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButtonActionPerformed
+        // TODO add your handling code here:
+        OrderWorkRequest orderWorkRequest = (OrderWorkRequest) userAccount.getWorkQueue().getWorkRequestList().get(orderDirTable.getSelectedRow());
+
+        orderWorkRequest.setCustomerFeedback(commentTextArea1.getText().trim());
+        populateOrderTable();
+        JOptionPane.showMessageDialog(null, "Order Status Updated Successfully");
+
+    }//GEN-LAST:event_saveChangesButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCartButtton;
     private javax.swing.JScrollPane allergyJListPane;
     private javax.swing.JLabel commentLabe;
+    private javax.swing.JLabel commentLabe1;
     private javax.swing.JTextArea commentTextArea;
+    private javax.swing.JTextArea commentTextArea1;
     private javax.swing.JTabbedPane custAreaPanel;
     private javax.swing.JScrollPane delDirectoryScollPanel1;
     private javax.swing.JLabel deliveryDirLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel menuItemName2;
     private javax.swing.JLabel menuItemName3;
     private javax.swing.JLabel menuItemName4;
@@ -370,6 +427,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton placeOrder;
     private javax.swing.JPanel previousOrderJPanel;
     private javax.swing.JComboBox<String> restListCombobox;
+    private javax.swing.JButton saveChangesButton;
     private javax.swing.JLabel totalOrderValue;
     // End of variables declaration//GEN-END:variables
 }

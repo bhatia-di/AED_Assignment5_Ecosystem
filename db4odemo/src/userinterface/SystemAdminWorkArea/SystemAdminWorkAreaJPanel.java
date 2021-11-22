@@ -825,14 +825,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(jSplitPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
-        
-        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-        if(selectedNode!=null){
-            //lblSelectedNode.setText(selectedNode.toString());
-        }
-    }//GEN-LAST:event_jTreeValueChanged
-
     private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameTextFieldActionPerformed
@@ -1197,6 +1189,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void delAgentPaswdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAgentPaswdFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_delAgentPaswdFieldActionPerformed
+
+    private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
+
+        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+        if(selectedNode!=null){
+            //lblSelectedNode.setText(selectedNode.toString());
+        }
+    }//GEN-LAST:event_jTreeValueChanged
     private void updateAdminHeader(String text) {
         personDirAdminHeaderLabel.setText(text);
     }    
