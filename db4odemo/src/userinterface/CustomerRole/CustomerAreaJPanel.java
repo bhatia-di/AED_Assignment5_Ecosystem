@@ -120,6 +120,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         orderDirTable = new javax.swing.JTable();
         deliveryDirLabel1 = new javax.swing.JLabel();
 
+        custAreaPanel.setForeground(new java.awt.Color(0, 0, 102));
+        custAreaPanel.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+
         menuItemName2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItemName2.setForeground(new java.awt.Color(0, 0, 102));
         menuItemName2.setText("Restaurant:");
@@ -280,7 +283,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(custAreaPanel)
                 .addContainerGap())
