@@ -338,32 +338,28 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="deliveryDirLabel1" min="-2" pref="214" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="delDirectoryScollPanel1" min="-2" pref="573" max="-2" attributes="0"/>
+                              <Component id="delDirectoryScollPanel1" min="-2" pref="666" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="acceptOrder" min="-2" pref="181" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="menuItemName3" min="-2" pref="195" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="deliveryManCombox" min="-2" pref="190" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="menuItemName2" min="-2" pref="195" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="orderStatusCombobox" min="-2" pref="190" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="saveOrderDetails" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="menuItemName3" min="-2" pref="195" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="deliveryManCombox" min="-2" pref="190" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="menuItemName2" min="-2" pref="195" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="orderStatusCombobox" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="saveOrderDetails" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="568" max="32767" attributes="0"/>
+                      <EmptySpace pref="459" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

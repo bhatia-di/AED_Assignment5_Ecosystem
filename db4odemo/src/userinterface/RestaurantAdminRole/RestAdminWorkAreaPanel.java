@@ -339,24 +339,22 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
                 .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deliveryDirLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(manageOrdersTabLayout.createSequentialGroup()
-                        .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delDirectoryScollPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(manageOrdersTabLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
+                                .addGap(10, 10, 10)
                                 .addComponent(acceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(manageOrdersTabLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
-                                        .addComponent(menuItemName3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(deliveryManCombox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(manageOrdersTabLayout.createSequentialGroup()
-                                        .addComponent(menuItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(orderStatusCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(saveOrderDetails))))))
-                .addContainerGap(568, Short.MAX_VALUE))
+                                .addComponent(menuItemName3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deliveryManCombox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(manageOrdersTabLayout.createSequentialGroup()
+                                .addComponent(menuItemName2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(orderStatusCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(saveOrderDetails))))
+                .addContainerGap(459, Short.MAX_VALUE))
         );
         manageOrdersTabLayout.setVerticalGroup(
             manageOrdersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,6 +480,7 @@ public class RestAdminWorkAreaPanel extends javax.swing.JPanel {
 
 
         }
+        populateOrderTable();
         JOptionPane.showMessageDialog(null, "Order Status Updated Successfully");
 
         
